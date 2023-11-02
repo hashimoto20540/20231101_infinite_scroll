@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="jp" dir="ltr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>infinite scroll</title>
+  <script defer src="main.js"></script>
+  <style>
+    .scroll {
+        /*https://developer.mozilla.org/ja/docs/Web/CSS/overflow　
+        　ユーザーエージェントに依存します。内容がパディングボックス内に収まる場合は visible と同じように表示されますが、新しいブロック整形コンテキストを生成します。デスクトップブラウザーは内容があふれる場合、スクロールバーを表示します。  */
+        overflow-y:auto;
+        direction: rtl;
+        width:400px;
+        height:300px;
+    }
+    .scroll img {
+        height:180px;
+        display:block;
+        margin:1px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>無限スクロール</h1>
+
+  <div class="scroll" data-max="10" data-lastnum="2">
+    <img src="2.png" />
+    <img src="1.png" />
+    <div id="output_text"></div>
+  </div>
+  <br><br>
+  テキスト<button id="mybtn">送信</button>
+  <div id="mydiv">
+  この部分が表示したり、非表示になったりします。
+  </div>
+
+  
+  <br><br>
+  入力してください：<input type="text" id="input_text"><br>
+  <button onclick="buttonclick();"> 送信</button>
+  <!-- <div id="output_text"></div> -->
+</body>
+
+</html>
