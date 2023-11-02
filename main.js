@@ -1,13 +1,14 @@
 var scroll = document.querySelectorAll('.scroll');
-// いくつもある場合があるためforEachを使用
+// ノードリストから各ノードにアクセスする。
 scroll.forEach(elm => {
-	console.log(elm);
+	// console.log(elm);
 	elm.onscroll = function () {
+		// console.log(this); //scrollの要素
 		// console.log(this.scrollTop);  // スクロールされたピクセル数
 		// console.log(this.clientHeight);  // CSS height + CSS padding
-		// console.log(this.scrollHeight);  //垂直スクロールバーを使用せずにすべてのコンテンツをビューポート内に収めるために要素に必要な最小の高さ。
+		// console.log(this.scrollHeight);  //すべてのコンテンツの高さ。
+		// console.log(document.querySelectorAll('.scroll').innerHTML);
 		if (this.scrollTop + this.clientHeight >= this.scrollHeight) {
-		// if (this.scrollBottom + this.clientHeight >= this.scrollHeight) {
 			//スクロールが末尾に達した
 			// console.log(this.dataset.lastnum); //data-* 属性の項目 初期値2
 			if (parseInt(this.dataset.lastnum) < parseInt(this.dataset.max)) {
@@ -16,35 +17,59 @@ scroll.forEach(elm => {
 				let img = document.createElement('img');
 				img.src = this.dataset.lastnum + '.png';
 				//親要素にimg要素を追加
-				// this.appendChild(img);
-				this.prepend(img);
+				// console.log(this);
+				this.appendChild(img);
+				// this.prepend(img);
 			}
 		}
 	};
 });
 
+// 以下改行\nを<br>に置換する
+function indention(a) {
+    // 入力された文字
+    // a = document.getElementById('inputText').value;
+    a = a.replace(/&/g, "&amp;");
+    a = a.replace(/</g, "&lt;");
+    a = a.replace(/>/g, "&gt;");
+    // 改行を置換する
+    b = a.replace(/\n/g,'<br>')
+    // div 要素に設定する
+	// document.getElementById('msg').innerHTML = b;
+	return b;
+};
 
-// 以下送信ボタンをクリックするとgetElementById("mybtn")が表示非表示
-function btnclick(event) {
-	var divelement = document.getElementById("mydiv");
-	if (divelement.style.display == "none") {
-		divelement.style.display = "";
-	} else {
-		divelement.style.display = "none";
-	}
-}
-window.addEventListener("load",
-function() {
-	var btndiv = document.getElementById("mybtn");
-	btndiv.addEventListener("click", btnclick, false);
-},
-false);
-// 以上送信ボタンをクリックすると表示非表示
-
-// 以下入力してくださいボタンを押すとテキストが表示される
+// 以下入力してボタンを押すとテキストが表示される
 function buttonclick() {
-	var input_text = document.getElementById("input_text").value;
-	document.getElementById("input_text").value = "";
-	document.getElementById("output_text").innerHTML = input_text;
+	// 入力値を取得する
+	var inputText = document.getElementById("inputText").value;
+	inputText = indention(inputText);
+	console.log(inputText);  //inputタグの入力値
+	// inputタグに入力したテキストを削除する
+	document.getElementById("inputText").value = "";
+
+	// 取得した入力値を表示させるdivタグを作る
+	var outputText = document.createElement('div');
+	// 作成したdivタグにclassをつける
+	outputText.classList.add("scroll--output__text");
+	// console.log(outputText); //<div class="scroll--output__text"></div>
+	//.scrollが付いている要素のノードリストを取得する
+	var scroll = document.querySelectorAll('.scroll');
+	scroll.forEach(elm => {
+		// .scrollが付いている要素の子要素の末尾に作成したdivタグを入れる
+		elm.prepend(outputText);
+		// console.log(elm); //scrollの要素
+		// console.log(outputText); //.scroll--output__textの要素
+		// console.log(inputText); //inputタグの入力値
+		outputText.innerHTML = inputText;
+	});
 }
-// 以上入力してくださいボタンを押すとテキストが表示される
+// 以上入力してボタンを押すとテキストが表示される
+
+//以下テキストエリアの高さを調整する
+var textarea = document.querySelector("textarea");
+textarea.addEventListener("input", function () {
+  this.style.height = "1em"; // 初期高さに戻す
+  this.style.height = this.scrollHeight + "px"; // スクロール領域の高さに合わせる
+});
+//以上テキストエリアの高さを調整する
