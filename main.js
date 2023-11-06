@@ -1,5 +1,5 @@
 // 以下JSONからデータを取得する。
-
+import sentMessage from "./sentMessageHistory.json" assert { type:"json"};
 // 以上JSONからデータを取得する。
 
 // 以下スクロールした際に表示されていなかったものを表示させる。
@@ -13,18 +13,34 @@ scroll.forEach(elm => {
 		// console.log(this.clientHeight);  // CSS height + CSS padding
 		// console.log(this.scrollHeight);  //すべてのコンテンツの高さ。
 		// console.log(document.querySelectorAll('.scroll').innerHTML);
-		if (this.scrollTop + this.clientHeight > this.scrollHeight) {
+		if (this.scrollTop + this.clientHeight >= this.scrollHeight) {
 			//スクロールが末尾に達した
 			// console.log(this.dataset.lastnum); //data-* 属性の項目 初期値2
 			if (parseInt(this.dataset.lastnum) < parseInt(this.dataset.max)) {
 				//未ロードの画像がある場合
 				this.dataset.lastnum = parseInt(this.dataset.lastnum) + 1;
+				console.log(sentMessage["0001"].img);
+				
+				// 以下テキストを入れる
+				// let div = document.createElement('div');
+				// // let img = document.createElement('img');
+				// div.src = 'img/' + this.dataset.lastnum + '.png';
+				// //親要素にimg要素を追加
+				// // console.log(this);
+				// this.appendChild(img);
+				// // this.prepend(img);
+				// 以上テキストを入れる
+
+
+
+				// 以下画像を入れる
 				let img = document.createElement('img');
 				img.src = 'img/' + this.dataset.lastnum + '.png';
 				//親要素にimg要素を追加
 				// console.log(this);
 				this.appendChild(img);
 				// this.prepend(img);
+				// 以上画像を入れる
 			}
 		}
 	};
