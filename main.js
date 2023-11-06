@@ -1,3 +1,8 @@
+// 以下JSONからデータを取得する。
+
+// 以上JSONからデータを取得する。
+
+// 以下スクロールした際に表示されていなかったものを表示させる。
 var scroll = document.querySelectorAll('.scroll');
 // ノードリストから各ノードにアクセスする。
 scroll.forEach(elm => {
@@ -15,7 +20,7 @@ scroll.forEach(elm => {
 				//未ロードの画像がある場合
 				this.dataset.lastnum = parseInt(this.dataset.lastnum) + 1;
 				let img = document.createElement('img');
-				img.src = this.dataset.lastnum + '.png';
+				img.src = 'img/' + this.dataset.lastnum + '.png';
 				//親要素にimg要素を追加
 				// console.log(this);
 				this.appendChild(img);
@@ -24,18 +29,16 @@ scroll.forEach(elm => {
 		}
 	};
 });
+// 以上スクロールした際に表示されていなかったものを表示させる。
 
 // 以下改行\nを<br>に置換する
 function indention(a) {
     // 入力された文字
-    // a = document.getElementById('inputText').value;
     a = a.replace(/&/g, "&amp;");
     a = a.replace(/</g, "&lt;");
     a = a.replace(/>/g, "&gt;");
     // 改行を置換する
     b = a.replace(/\n/g,'<br>')
-    // div 要素に設定する
-	// document.getElementById('msg').innerHTML = b;
 	return b;
 };
 
@@ -44,7 +47,7 @@ function buttonclick() {
 	// 入力値を取得する
 	var inputText = document.getElementById("inputText").value;
 	inputText = indention(inputText);
-	console.log(inputText);  //inputタグの入力値
+	// console.log(inputText);  //inputタグの入力値
 	// inputタグに入力したテキストを削除する
 	document.getElementById("inputText").value = "";
 
@@ -73,3 +76,11 @@ textarea.addEventListener("input", function () {
   this.style.height = this.scrollHeight + "px"; // スクロール領域の高さに合わせる
 });
 //以上テキストエリアの高さを調整する
+
+// 以下JSON
+const json = `{"id": "0001", "name": "AAA", "age": 20}`;
+// console.log(json);
+// JSON.parse(jsonデータ)でキーの文字列を解析する
+const parsed = JSON.parse(json);
+console.log(parsed.name)
+// 以上JSON
