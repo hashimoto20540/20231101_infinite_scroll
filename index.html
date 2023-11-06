@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width" />
   <title>infinite scroll</title>
   <script defer src="main.js" type="module"></script>
+  <script defer src="main2.js"></script>
   <style>
     .scroll {
         overflow-y:auto;
@@ -23,7 +24,7 @@
       height: 1em;
     }
     .scroll--output__text {
-      margin: 0.5em 0.5em 0.5em auto;
+      margin: 2.5em 0.5em 2.5em auto;
       width: fit-content;
     }
   </style>
@@ -32,24 +33,21 @@
 <body>
   <h1>無限スクロール</h1>
 
-  <div class="scroll" data-max="10" data-lastnum="2">
+  <div class="scroll" data-max="10" data-lastnum="0">
+    <!-- <div></div> -->
     <!-- <img src=`${sentMessage["0001"].img}` /> -->
-    <img src="img/1.png" />
-    <img src="img/2.png" />
+    <!-- <img src="img/1.png" />
+    <img src="img/2.png" /> -->
     <!-- <div id="outputText"></div> -->
   </div>
   <br><br>
   <div>入力してください</div>
   <textarea type="text" id="inputText" class="textarea--input__text"></textarea><br>
   <button onclick="buttonclick();"> 送信</button>
-
-  <script type="module">
-    // 以下JSON
-    import sentMessage from "./sentMessageHistory.json" assert { type:"json"};
-    // console.log(sentMessage["0001"].img);
-    // console.log(sentMessage.name);
-    // 以上JSON
-  </script>
+  <br> 
+  <div id="aaa">
+    aaa
+  </div>
 </body>
 
 </html>
