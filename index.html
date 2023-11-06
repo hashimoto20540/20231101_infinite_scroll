@@ -41,6 +41,13 @@
   <div>入力してください</div>
   <textarea type="text" id="inputText" class="textarea--input__text"></textarea><br>
   <button onclick="buttonclick();"> 送信</button>
+
+  <script type="module">
+    // 以下JSON
+    import data from "./sentMessageHistory.json" assert { type:"json"};
+    console.log(data.id);
+    // 以上JSON
+  </script>
 </body>
 
 </html>

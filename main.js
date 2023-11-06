@@ -77,10 +77,3 @@ textarea.addEventListener("input", function () {
 });
 //以上テキストエリアの高さを調整する
 
-// 以下JSON
-const json = `{"id": "0001", "name": "AAA", "age": 20}`;
-// console.log(json);
-// JSON.parse(jsonデータ)でキーの文字列を解析する
-const parsed = JSON.parse(json);
-console.log(parsed.name)
-// 以上JSON
