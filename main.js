@@ -13,7 +13,7 @@ scroll.forEach(elm => {
 		// console.log(this.clientHeight);  // CSS height + CSS padding
 		// console.log(this.scrollHeight);  //すべてのコンテンツの高さ。
 		// console.log(document.querySelectorAll('.scroll').innerHTML);
-		if (this.scrollTop + this.clientHeight >= this.scrollHeight) {
+		if (this.scrollTop + this.clientHeight > this.scrollHeight) {
 			//スクロールが末尾に達した
 			// console.log(this.dataset.lastnum); //data-* 属性の項目 初期値2
 			if (parseInt(this.dataset.lastnum) < parseInt(this.dataset.max)) {
