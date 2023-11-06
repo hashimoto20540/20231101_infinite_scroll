@@ -1,10 +1,12 @@
 // 以下入力してボタンを押すとテキストが表示される
 function buttonclick() {
 	// 入力値を取得する
-	var inputText = document.getElementById("inputText").value;
+    var inputText = document.getElementById("inputText").value;
+    // 改行を<br>に変換するindention()を呼ぶ
 	inputText = indention(inputText);
-	// console.log(inputText);  //inputタグの入力値
-	// inputタグに入力したテキストを削除する
+    // console.log(inputText);  //inputタグの入力値に改行の処理を加えたもの
+    
+	// inputタグに入力したテキストを削除する（送信ボタンを押すと消えるようにする）
 	document.getElementById("inputText").value = "";
 
 	// 取得した入力値を表示させるdivタグを作る
@@ -17,9 +19,7 @@ function buttonclick() {
 	scroll.forEach(elm => {
 		// .scrollが付いている要素の子要素の末尾に作成したdivタグを入れる
 		elm.prepend(outputText);
-		// console.log(elm); //scrollの要素
-		// console.log(outputText); //.scroll--output__textの要素
-		// console.log(inputText); //inputタグの入力値
+        // 入力値を作成したoutputText(divタグ)に入れる
 		outputText.innerHTML = inputText;
 	});
 }
@@ -44,5 +44,3 @@ textarea.addEventListener("input", function () {
   this.style.height = this.scrollHeight + "px"; // スクロール領域の高さに合わせる
 });
 //以上テキストエリアの高さを調整する
-
-
