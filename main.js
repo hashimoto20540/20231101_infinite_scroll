@@ -49,11 +49,18 @@ var scroll = document.querySelectorAll('.scroll');
 				childTotalHeight += elm.children[arrIndex].scrollHeight;
 				// console.log(childTotalHeight);
 			}
+			// elm.scrollIntoView(false);
+			// elm.scrollIntoView();
+			// elm.scrollIntoView({ block: "end" });
+			elm.scrollIntoView({  
+				behavior: 'smooth'  
+			},
+			{ block: "end" });
 		});
     }
 // 以上ロード時にスクロール画面内にコンテンツ（画像かテキスト）を表示させる
 
-// 以下スクロールした際に表示されていなかったものを表示させる。
+// 以下スクロールした際に表示されていなかったものを表示させる。（無限スクロール）
 // ノードリストから各ノードにアクセスする。
 scroll.forEach(elm => {
 	elm.onscroll = function () {
@@ -96,6 +103,4 @@ scroll.forEach(elm => {
 		}
 	};
 });
-// 以上スクロールした際に表示されていなかったものを表示させる。
-
-
+// 以上スクロールした際に表示されていなかったものを表示させる。（無限スクロール）
