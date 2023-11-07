@@ -47,7 +47,7 @@ var scroll = document.querySelectorAll('.scroll');
 				}
 
 				// .scrollの子要素のindexを求める
-				console.log(parseInt(elm.dataset.lastnum));//OK
+				// console.log(parseInt(elm.dataset.lastnum));//OK
 				var arrIndex = parseInt(elm.dataset.lastnum) - 1;
 				// console.log(arrIndex);//下に表示されているからミスってた
 				//子要素の合計の高さを求める
@@ -57,13 +57,17 @@ var scroll = document.querySelectorAll('.scroll');
 			// elm.scrollIntoView(false);
 			// elm.scrollIntoView();
 			// elm.scrollIntoView({ block: "end" });
-			$('.scroll')[0].scrollIntoView(false);
+			$('.scroll')[0].lastElementChild.scrollIntoView(false);
+			var scrollLastChild = scroll[0].lastElementChild;
+			// var scrollLastChild = scroll[0].children[0];
+			// console.log(scrollLastChild);
 		});
     }
 // 以上ロード時にスクロール画面内にコンテンツ（画像かテキスト）を表示させる
 
-// 以下スクロールした際に表示されていなかったものを表示させる。（無限スクロール）
-// ノードリストから各ノードにアクセスする。
+
+
+// 以下無限スクロール（上スクロール）
 scroll.forEach(elm => {
 	elm.onscroll = function () {
 		// console.log(this); //scrollの要素
@@ -71,11 +75,14 @@ scroll.forEach(elm => {
 		// console.log(this.clientHeight);  // .scrollの　height + padding
 		// console.log(this.scrollHeight);  //すべてのコンテンツの高さ（スクロールされて隠れている箇所も含む）。
 		// スクロールしたピクセル数＋.scrollの高さが表示されているコンテンツ以上の場合＝表示されているコンテンツの最下部が見えている場合
-		if (this.scrollTop + this.clientHeight >= this.scrollHeight) {
+		console.log(this.scrollTop);
+		if (this.scrollTop <= 20) {
 			//スクロールが末尾に達した
 			// console.log(this.dataset.lastnum); //data-* 属性の項目＝初期値はスクロールされる前に表示されている画像orテキストの数
 			if (parseInt(this.dataset.lastnum) < parseInt(this.dataset.max)) {
-				//未ロードの画像がある場合
+				//未ロードのテキスト・画像がある場合
+
+				
 				this.dataset.lastnum = parseInt(this.dataset.lastnum) + 1;
 
 				//以下ゼロパディング
@@ -95,7 +102,7 @@ scroll.forEach(elm => {
 				// 以下画像を入れる
 				if (sentMessage[sentId].img != "") {
 					let img = document.createElement('img');
-					img.src = 'img/' + this.dataset.lastnum + '.png';
+					img.src = sentMessage[sentId].img;
 					//親要素にimg要素を追加
 					// console.log(this);
 					this.prepend(img);
@@ -105,4 +112,62 @@ scroll.forEach(elm => {
 		}
 	};
 });
+// 以上無限スクロール（上スクロール）
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 以下スクロールした際に表示されていなかったものを表示させる。（無限スクロール下スクロール）
+// ノードリストから各ノードにアクセスする。
+// scroll.forEach(elm => {
+// 	elm.onscroll = function () {
+// 		// console.log(this); //scrollの要素
+// 		// console.log(this.scrollTop);  // スクロールされたピクセル数
+// 		// console.log(this.clientHeight);  // .scrollの　height + padding
+// 		// console.log(this.scrollHeight);  //すべてのコンテンツの高さ（スクロールされて隠れている箇所も含む）。
+// 		// スクロールしたピクセル数＋.scrollの高さが表示されているコンテンツ以上の場合＝表示されているコンテンツの最下部が見えている場合
+// 		if (this.scrollTop + this.clientHeight >= this.scrollHeight) {
+// 			//スクロールが末尾に達した
+// 			// console.log(this.dataset.lastnum); //data-* 属性の項目＝初期値はスクロールされる前に表示されている画像orテキストの数
+// 			if (parseInt(this.dataset.lastnum) < parseInt(this.dataset.max)) {
+// 				//未ロードの画像がある場合
+// 				this.dataset.lastnum = parseInt(this.dataset.lastnum) + 1;
+
+// 				//以下ゼロパディング
+// 				var sentId = ( '0000' + this.dataset.lastnum ).slice( -4 );
+// 				// console.log(sentId);
+// 				//以上ゼロパディング
+
+// 				// 以下テキストを入れる
+// 				if (sentMessage[sentId].text != "") {
+// 					let div = document.createElement('div');
+// 					// div.textContent = sentMessage["0001"].text;  //作成したdiv要素にテキストを入れる
+// 					div.textContent = sentMessage[sentId].text;
+// 					div.classList.add("scroll--output__text");
+// 					this.prepend(div);
+// 				}
+
+// 				// 以下画像を入れる
+// 				if (sentMessage[sentId].img != "") {
+// 					let img = document.createElement('img');
+// 					img.src = 'img/' + this.dataset.lastnum + '.png';
+// 					//親要素にimg要素を追加
+// 					// console.log(this);
+// 					this.prepend(img);
+// 					// this.prepend(img);
+// 				}
+// 			}
+// 		}
+// 	};
+// });
 // 以上スクロールした際に表示されていなかったものを表示させる。（無限スクロール）
