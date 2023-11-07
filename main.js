@@ -11,51 +11,53 @@ var scroll = document.querySelectorAll('.scroll');
 		scroll.forEach(elm => {
 			//以下JSONに記載されているIdをゼロパディング
 			// console.log(elm.dataset);　//.scrollに記載されているdataset
-			var sentId = ( '0000' + elm.dataset.lastnum ).slice( -4 );
+			var sentId = ('0000' + elm.dataset.lastnum).slice(-4);
+			// console.log(sentId);//初期値0
 			//以上JSONに記載されているIdをゼロパディング
 			
 			//.scrollの子要素の高さの合計を定義
 			var childTotalHeight = 0;
 			//childTotalHeightがスクロール画面（elm.clientHeight、.scrollの高さ）の高さ以下の場合、子要素を追加する
 			for (var i = 0; childTotalHeight <= elm.clientHeight; i++) {
+				// console.log(childTotalHeight);
 				// データセットを+1する
 				elm.dataset.lastnum = parseInt(elm.dataset.lastnum) + 1;
 				// console.log(elm.dataset.lastnum);
 				// sentIdを+1する
 				sentId = ('0000' + elm.dataset.lastnum).slice(-4);
 				// console.log(sentMessage[sentId].img);
-
+				// console.log(sentMessage[sentId]);
 				// 以下JSONにテキストが記載されていた場合テキストを入れる
+				// console.log(sentMessage[sentId]);
 				if (sentMessage[sentId].text != "") {
 					let div = document.createElement('div');
 					// div.textContent = sentMessage["0001"].text;  //作成したdiv要素にテキストを入れる
 					div.textContent = sentMessage[sentId].text;
 					div.classList.add("scroll--output__text");
-					elm.appendChild(div);
+					elm.prepend(div);
 				}
-				
+
 				// 以下JSONに画像が記載されていた場合画像を入れる
 				if (sentMessage[sentId].img != "") {
 					let img = document.createElement('img');
 					// console.log("img");
 					img.src = sentMessage[sentId].img;
 					//親要素にimg要素を追加
-					elm.appendChild(img);
+					elm.prepend(img);
 				}
 
 				// .scrollの子要素のindexを求める
+				console.log(parseInt(elm.dataset.lastnum));//OK
 				var arrIndex = parseInt(elm.dataset.lastnum) - 1;
+				// console.log(arrIndex);//下に表示されているからミスってた
 				//子要素の合計の高さを求める
-				childTotalHeight += elm.children[arrIndex].scrollHeight;
+				childTotalHeight += elm.children[0].scrollHeight;
 				// console.log(childTotalHeight);
 			}
 			// elm.scrollIntoView(false);
 			// elm.scrollIntoView();
 			// elm.scrollIntoView({ block: "end" });
-			elm.scrollIntoView({  
-				behavior: 'smooth'  
-			},
-			{ block: "end" });
+			$('.scroll')[0].scrollIntoView(false);
 		});
     }
 // 以上ロード時にスクロール画面内にコンテンツ（画像かテキスト）を表示させる
@@ -87,7 +89,7 @@ scroll.forEach(elm => {
 					// div.textContent = sentMessage["0001"].text;  //作成したdiv要素にテキストを入れる
 					div.textContent = sentMessage[sentId].text;
 					div.classList.add("scroll--output__text");
-					this.appendChild(div);
+					this.prepend(div);
 				}
 
 				// 以下画像を入れる
@@ -96,7 +98,7 @@ scroll.forEach(elm => {
 					img.src = 'img/' + this.dataset.lastnum + '.png';
 					//親要素にimg要素を追加
 					// console.log(this);
-					this.appendChild(img);
+					this.prepend(img);
 					// this.prepend(img);
 				}
 			}
