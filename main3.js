@@ -13,6 +13,9 @@ function setupInitialPosts() {
   $('.posts')[0].scrollIntoView(false);
   // $('.posts')[0].scrollIntoView({behavior: "smooth", block: "end"});
 }
+
+
+
 // 下で呼ぶ（スクロールした時の）ロード時に先頭に追加
 function loadPrepend() {
   // scrollIntoView(false)を使用したことにより初期値が1650となっている
@@ -35,6 +38,8 @@ function loadPrepend() {
   $(document).scrollTop(beforeUpdatingScrollTop + movedScroll);
   console.log($(document).scrollTop(beforeUpdatingScrollTop + movedScroll)); //init [document, context: document]←何これ？
 }
+
+
 
 let prependedCount = 0;
 let scrollEndTid = null;

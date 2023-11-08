@@ -17,11 +17,12 @@ function buttonclick() {
 	//.scrollが付いている要素のノードリストを取得する
 	var scroll = document.querySelectorAll('.scroll');
 	scroll.forEach(elm => {
-		// .scrollが付いている要素の子要素の末尾に作成したdivタグを入れる
-		elm.prepend(outputText);
+		// .scrollが付いている要素の子要素の先頭に作成したdivタグを入れる
+		elm.append(outputText);
         // 入力値を作成したoutputText(divタグ)に入れる
 		outputText.innerHTML = inputText;
 	});
+$('.scroll')[0].lastElementChild.scrollIntoView(false);
 }
 // 以上入力してボタンを押すとテキストが表示される
 
