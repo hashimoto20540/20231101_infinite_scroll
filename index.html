@@ -6,8 +6,6 @@
   <meta name="viewport" content="width=device-width" />
   <title>infinite scroll</title>
    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
-  <script defer src="main.js" type="module"></script>
-  <script defer src="main2.js"></script>
   <style>
     .scroll {
         overflow-y:auto;
@@ -34,15 +32,9 @@
       display: none;
     }
     .loading {
-      /* position: fixed;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0; */
       background: rgba(0,0,0,.5);
       background-image: url(img/712-88.gif);
       background-repeat: no-repeat;
-      /* background-attachment: fixed; */
       background-position: center center;
       background-size: 50px 50px;
       width: 100%;
@@ -63,10 +55,8 @@
   <div>入力してください</div>
   <textarea type="text" id="inputText" class="textarea--input__text"></textarea><br>
   <button id="sendbutton" disabled onclick="buttonclick();"> 送信</button>
-  <br> 
-<br> 
-<br> 
-  <!-- <div class="loading hide"></div> -->
+
+  <script defer src="main.js" type="module"></script>
 </body>
 
 </html>

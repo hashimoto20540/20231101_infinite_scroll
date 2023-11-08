@@ -1,165 +1,105 @@
 // 以下JSONからデータを取得する。
-// 下の行の取得方法を変更する。
-// import sentMessage from "./sentMessageHistory.json" assert { type: "json"};
-
-var sentMessage;
-// Ajaxで取得する。
+var sentMessageJSON;
 $.ajax({
   url: 'sentMessageHistory.json',
-  // getかpostか。取得するか送るか。
   type: 'GET',
   dataType: "json",
-
-  //リクエストが完了するまで実行される。Ajaxの動作パラメーターの一つ。
+  //リクエストが完了するまで実行。
   beforeSend: function () {
-    console.log("css change start");
+    // ローディング画像を表示
     $('.loading').removeClass('hide');
-    console.log("css change end");
-    // sleep(3000);
   }
-  //ajaxのメソッド。成功した場合。
+  //成功。
 }).done(function (data) {
   setTimeout(() => {
-    sentMessage = data;
+    sentMessageJSON = data;
     scrollFirstDisplay();
     infiniteScroll();
   }, "1999");
   setTimeout(() => {
+    // ローディング画像を非表示
     $('.loading').addClass('hide');
     canPressButton();
   }, "2000");
-  // console.log(data);
-//ajaxのメソッド。失敗した場合。
+//失敗。
 }).fail(function(){
   console.log('error');
 });
-
-// console.log(sentMessage);
 // 以上JSONからデータを取得する。
 
 // .scrollを取得
 var scroll = document.querySelectorAll('.scroll');
 
-
-// 以下sleep
-function sleep(waitMsec) {
-        console.log("sleep");
-    var startMsec = new Date();
-
-    // 指定ミリ秒間だけループさせる（CPUは常にビジー状態）
-    while (new Date() - startMsec < waitMsec);
-  };
-
-// 以上sleep
-
-
-
-
-// 以下ロード時にスクロール画面（.scroll）内にコンテンツ（画像かテキスト）を表示させる
-    // window.onload = onLoad;
+// 以下スクロール画面（.scroll）内にコンテンツ（画像かテキスト）を表示させる
 function scrollFirstDisplay() {
-		//scrollは配列になっているため、ループ処理で記載する。
-		scroll.forEach(elm => {
-			//JSONに記載されているIdをゼロパディング
-			// console.log(elm.dataset);　//.scrollに記載されているdataset
-			var sentId = ('0000' + scroll.keys()[0]).slice(-4);
-			// console.log(scroll.keys()[0]);
-			// console.log(sentId);//初期値0
-			//.scrollの子要素の高さの合計を定義
-			var childTotalHeight = 0;
-			//childTotalHeightがスクロール画面（elm.clientHeight、.scrollの高さ）の高さ以下の場合、子要素を追加する
-			for (var i = 0; childTotalHeight <= elm.clientHeight; i++) {
-				// console.log(childTotalHeight);
-				// データセットを+1する
-				elm.dataset.lastnum = parseInt(elm.dataset.lastnum) + 1;
-				// console.log(elm.dataset.lastnum);
-				// sentIdを+1する
-				sentId = ('0000' + elm.dataset.lastnum).slice(-4);
-				// console.log(sentMessage[sentId].img);
-				// console.log(sentMessage[sentId]);
-				// 以下JSONにテキストが記載されていた場合テキストを入れる
-				// console.log(sentMessage[sentId]);
-				if (sentMessage[sentId].text != "") {
-					let div = document.createElement('div');
-					// div.textContent = sentMessage["0001"].text;  //作成したdiv要素にテキストを入れる
-					div.textContent = sentMessage[sentId].text;
-					div.classList.add("scroll--output__text");
-					elm.prepend(div);
-				}
-
-				// 以下JSONに画像が記載されていた場合画像を入れる
-				if (sentMessage[sentId].img != "") {
-					let img = document.createElement('img');
-					// console.log("img");
-					img.src = sentMessage[sentId].img;
-					//親要素にimg要素を追加
-					elm.prepend(img);
-				}
-
-				// .scrollの子要素のindexを求める
-				// console.log(parseInt(elm.dataset.lastnum));//OK
-				var arrIndex = parseInt(elm.dataset.lastnum) - 1;
-				// console.log(arrIndex);//下に表示されているからミスってた
-				//子要素の合計の高さを求める
-				childTotalHeight += elm.children[0].scrollHeight;
-				// console.log(childTotalHeight);
-			}
-			// elm.scrollIntoView(false);
-			// elm.scrollIntoView();
-			// elm.scrollIntoView({ block: "end" });
-			$('.scroll')[0].lastElementChild.scrollIntoView(false);
-			var scrollLastChild = scroll[0].lastElementChild;
-			// var scrollLastChild = scroll[0].children[0];
-			// console.log(scrollLastChild);
-		});
+  //scrollは配列になっているため、ループ処理で記載する（一回しか行わないが）。
+  scroll.forEach(elm => {
+    //JSONに記載されているIdを定義
+    var sentId;
+    //.scrollの子要素の高さの合計を定義
+    var childTotalHeight = 0;
+    //childTotalHeightがスクロール画面（elm.clientHeight、.scrollの高さ）の高さ以下の場合、子要素を追加する
+    for (var i = 0; childTotalHeight <= elm.clientHeight; i++) {
+      // .scrollのlastnumを+1する
+      elm.dataset.lastnum = parseInt(elm.dataset.lastnum) + 1;
+      // JSONのId（sentId）を+1する
+      sentId = ('0000' + elm.dataset.lastnum).slice(-4);
+      // 以下JSONにテキストが記載されていた場合テキストを入れる
+      if (sentMessageJSON[sentId].text != "") {
+        let div = document.createElement('div');
+        //作成したdiv要素にテキストを入れる
+        div.textContent = sentMessageJSON[sentId].text;
+        div.classList.add("scroll--output__text");
+        elm.prepend(div);
+      }
+      // 以下JSONに画像が記載されていた場合画像を入れる
+      if (sentMessageJSON[sentId].img != "") {
+        let img = document.createElement('img');
+        img.src = sentMessageJSON[sentId].img;
+        elm.prepend(img);
+      }
+      //子要素の合計の高さを求める
+      childTotalHeight += elm.children[0].scrollHeight;
     }
-// 以上ロード時にスクロール画面内にコンテンツ（画像かテキスト）を表示させる
-
-
+    //.scrollの先頭（.scrollの一番下）に自動でスクロールする
+    $('.scroll')[0].lastElementChild.scrollIntoView(false);
+  });
+}
+// 以下スクロール画面（.scroll）内にコンテンツ（画像かテキスト）を表示させる
 
 // 以下無限スクロール（上スクロール）
 function infiniteScroll() {
+  //scrollは配列になっているため、ループ処理で記載する（一回しか行わないが）。
   scroll.forEach(elm => {
+    // スクロールされた際に以下の関数を実行
     elm.onscroll = function () {
-      // console.log(this); //scrollの要素
-      // console.log(this.scrollTop);  // スクロールされたピクセル数
-      // console.log(this.clientHeight);  // .scrollの　height + padding
-      // console.log(this.scrollHeight);  //すべてのコンテンツの高さ（スクロールされて隠れている箇所も含む）。
-      // スクロールしたピクセル数＋.scrollの高さが表示されているコンテンツ以上の場合＝表示されているコンテンツの最下部が見えている場合
+      // .scrollIntoView(false)により、最初に元の位置（scrollTopが0）から下にスクロールされているので、上部までスクロールされたことを検知するために200より小さくなったときに処理を行う。
       // console.log(this.scrollTop);
-      if (this.scrollTop <= 200) {
-        //スクロールが末尾に達した
-        // console.log(this.dataset.lastnum); //data-* 属性の項目＝初期値はスクロールされる前に表示されている画像orテキストの数
-        if (parseInt(this.dataset.lastnum) < parseInt(this.dataset.max)) {
-          //未ロードのテキスト・画像がある場合
+      if (this.scrollTop >= 200) return;
+      // 最後まで表示していないか確認。.scrollにJSONデータの最大値data-maxを設定
+      if (parseInt(this.dataset.lastnum) == parseInt(this.dataset.max)) return;
+      //未ロードのテキスト・画像がある場合
+      //以下上部までスクロールした際の処理
+      this.dataset.lastnum = parseInt(this.dataset.lastnum) + 1;
+      // JSONのId（sentId）を+1する
+      var sentId = ('0000' + this.dataset.lastnum).slice(-4);
 
-				
-          this.dataset.lastnum = parseInt(this.dataset.lastnum) + 1;
+      //以上ゼロパディング
 
-          //以下ゼロパディング
-          var sentId = ('0000' + this.dataset.lastnum).slice(-4);
-          // console.log(sentId);
-          //以上ゼロパディング
+      // 以下テキストを入れる
+      if (sentMessageJSON[sentId].text != "") {
+        let div = document.createElement('div');
+        //作成したdiv要素にテキストを入れる
+        div.textContent = sentMessageJSON[sentId].text;
+        div.classList.add("scroll--output__text");
+        this.prepend(div);
+      }
 
-          // 以下テキストを入れる
-          if (sentMessage[sentId].text != "") {
-            let div = document.createElement('div');
-            // div.textContent = sentMessage["0001"].text;  //作成したdiv要素にテキストを入れる
-            div.textContent = sentMessage[sentId].text;
-            div.classList.add("scroll--output__text");
-            this.prepend(div);
-          }
-
-          // 以下画像を入れる
-          if (sentMessage[sentId].img != "") {
-            let img = document.createElement('img');
-            img.src = sentMessage[sentId].img;
-            //親要素にimg要素を追加
-            // console.log(this);
-            this.prepend(img);
-            // this.prepend(img);
-          }
-        }
+      // 以下画像を入れる
+      if (sentMessageJSON[sentId].img != "") {
+        let img = document.createElement('img');
+        img.src = sentMessageJSON[sentId].img;
+        this.prepend(img);
       }
     };
   });
@@ -172,3 +112,48 @@ function canPressButton() {
   button.disabled = null;
 }
 // 以上ボタンを押せるようにする
+
+
+// 以下入力してボタンを押すとテキストが表示される
+function buttonclick() {
+	// 入力値を取得する
+  var inputText = document.getElementById("inputText").value;
+  // 改行を<br>に変換するindention()を呼ぶ
+	inputText = indention(inputText);
+	// inputタグに入力したテキストを削除する（送信ボタンを押すと消えるようにする）
+	document.getElementById("inputText").value = "";
+
+	// 取得した入力値を表示させるdiv要素を作成
+	var outputText = document.createElement('div');
+	// 作成したdiv要素にclassをつける
+	outputText.classList.add("scroll--output__text");
+	//.scrollが付いている要素のノードリストを取得する
+	var scroll = document.querySelectorAll('.scroll');
+	scroll.forEach(elm => {
+		// .scrollが付いている要素の子要素の先頭に作成したdivタグを入れる
+		elm.append(outputText);
+    // 入力したテキストを作成したoutputText(divタグ)に入れる
+		outputText.innerHTML = inputText;
+  });
+  // テキストを送信した際に一番下（テキストを送信したかわかるように）に移動するようにする
+  $('.scroll')[0].lastElementChild.scrollIntoView(false);
+}
+// 以上入力してボタンを押すとテキストが表示される
+
+// 以下改行\nを<br>に置換、エスケープ処理
+function indention(a) {
+    // 入力された文字
+    a = a.replace(/&/g, "&amp;");
+    a = a.replace(/</g, "&lt;");
+    a = a.replace(/>/g, "&gt;");
+    // 改行を置換する
+    b = a.replace(/\n/g,'<br>')
+	return b;
+};
+
+//以下テキストエリアの高さを調整する
+var textarea = document.querySelector("textarea");
+textarea.addEventListener("input", function () {
+  this.style.height = "1em"; // 初期高さに戻す
+  this.style.height = this.scrollHeight + "px"; // スクロール領域の高さに合わせる
+});
