@@ -14,16 +14,34 @@
         height:360px;
         border: solid 1px #333333;
     }
-    .scroll img {
+    /* .scroll img {
         height:180px;
         display:block;
         margin:0.5em 0.5em 0.5em auto;
-    }
+    } */
+    
     .textarea--input__text {
       height: 1em;
     }
-    .scroll--output__text {
+
+    .scroll--output_receiver__img {
+      height:180px;
+      display:block;
+      margin:0.5em 0.5em 0.5em auto;
+    }
+    .scroll--output_sender__img {
+      height:180px;
+      display:block;
+      margin:0.5em auto 0.5em 0.5em;
+    }
+
+    .scroll--output_receiver__text {
       margin: 2.5em 0.5em 0em auto;
+      width: fit-content;
+    }
+
+    .scroll--output_sender__text {
+      margin: 2.5em auto 0em 0.5em;
       width: fit-content;
     }
 
@@ -54,7 +72,7 @@
   <br><br>
   <div>入力してください</div>
   <textarea type="text" id="inputText" class="textarea--input__text"></textarea><br>
-  <button id="sendbutton" disabled onclick="buttonclick();"> 送信</button>
+  <button id="sendbutton" disabled > 送信</button>
 
   <script defer src="main.js" type="module"></script>
 </body>

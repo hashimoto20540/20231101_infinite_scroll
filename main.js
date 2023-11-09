@@ -49,12 +49,21 @@ function scrollFirstDisplay() {
         let div = document.createElement('div');
         //作成したdiv要素にテキストを入れる
         div.textContent = sentMessageJSON[sentId].text;
-        div.classList.add("scroll--output__text");
+        if (sentMessageJSON[sentId].whoSend == "receiver") {
+          div.classList.add("scroll--output_receiver__text");
+        } else if (sentMessageJSON[sentId].whoSend == "sender") {
+          div.classList.add("scroll--output_sender__text");
+        }
         elm.prepend(div);
       }
       // 以下JSONに画像が記載されていた場合画像を入れる
       if (sentMessageJSON[sentId].img != "") {
         let img = document.createElement('img');
+        if (sentMessageJSON[sentId].whoSend == "receiver") {
+          img.classList.add("scroll--output_receiver__img");
+        } else if (sentMessageJSON[sentId].whoSend == "sender") {
+          img.classList.add("scroll--output_sender__img");
+        }
         img.src = sentMessageJSON[sentId].img;
         elm.prepend(img);
       }
@@ -84,20 +93,27 @@ function infiniteScroll() {
       // JSONのId（sentId）を+1する
       var sentId = ('0000' + this.dataset.lastnum).slice(-4);
 
-      //以上ゼロパディング
-
       // 以下テキストを入れる
       if (sentMessageJSON[sentId].text != "") {
         let div = document.createElement('div');
         //作成したdiv要素にテキストを入れる
         div.textContent = sentMessageJSON[sentId].text;
-        div.classList.add("scroll--output__text");
+        if (sentMessageJSON[sentId].whoSend == "receiver") {
+          div.classList.add("scroll--output_receiver__text");
+        } else if (sentMessageJSON[sentId].whoSend == "sender") {
+          div.classList.add("scroll--output_sender__text");
+        }
         this.prepend(div);
       }
 
       // 以下画像を入れる
       if (sentMessageJSON[sentId].img != "") {
         let img = document.createElement('img');
+        if (sentMessageJSON[sentId].whoSend == "receiver") {
+          img.classList.add("scroll--output_receiver__img");
+        } else if (sentMessageJSON[sentId].whoSend == "sender") {
+          img.classList.add("scroll--output_sender__img");
+        }
         img.src = sentMessageJSON[sentId].img;
         this.prepend(img);
       }
@@ -106,17 +122,16 @@ function infiniteScroll() {
 };
 // 以上無限スクロール（上スクロール）
 
+const sendbutton = document.getElementById("sendbutton");
 // 以下ボタンを押せるようにする
 function canPressButton() {
-  const button = document.getElementById("sendbutton");
-  button.disabled = null;
+  sendbutton.disabled = null;
 }
 // 以上ボタンを押せるようにする
 
-
 // 以下入力してボタンを押すとテキストが表示される
-function buttonclick() {
-	// 入力値を取得する
+sendbutton.addEventListener('click', function () {
+  // 入力値を取得する
   var inputText = document.getElementById("inputText").value;
   // 改行を<br>に変換するindention()を呼ぶ
 	inputText = indention(inputText);
@@ -126,7 +141,7 @@ function buttonclick() {
 	// 取得した入力値を表示させるdiv要素を作成
 	var outputText = document.createElement('div');
 	// 作成したdiv要素にclassをつける
-	outputText.classList.add("scroll--output__text");
+	outputText.classList.add("scroll--output_receiver__text");
 	//.scrollが付いている要素のノードリストを取得する
 	var scroll = document.querySelectorAll('.scroll');
 	scroll.forEach(elm => {
@@ -137,7 +152,7 @@ function buttonclick() {
   });
   // テキストを送信した際に一番下（テキストを送信したかわかるように）に移動するようにする
   $('.scroll')[0].lastElementChild.scrollIntoView(false);
-}
+});
 // 以上入力してボタンを押すとテキストが表示される
 
 // 以下改行\nを<br>に置換、エスケープ処理
@@ -147,7 +162,7 @@ function indention(a) {
     a = a.replace(/</g, "&lt;");
     a = a.replace(/>/g, "&gt;");
     // 改行を置換する
-    b = a.replace(/\n/g,'<br>')
+  var b = a.replace(/\n/g, '<br>');
 	return b;
 };
 
