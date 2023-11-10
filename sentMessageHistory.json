@@ -1,242 +1,204 @@
 {
-    "0001": 
-    {
-        "text": "テスト1",
-        "img" : "",
-        "whoSend" : "sender"
-    },
-    "0002": 
-    {
-        "text": "テスト2",
-        "img" : "",
-        "whoSend" : "receiver"
-    },
-    "0003": 
-    {
-        "text": "テスト3",
-        "img" : "",
-        "whoSend" : "receiver"
-    },
-    "0004": 
-    {
-        "text": "",
-        "img" : "img/4.png",
-        "whoSend" : "receiver"
-    },
-    "0005": 
-    {
-        "text": "",
-        "img" : "img/5.png",
-        "whoSend" : "sender"
-    },
-    "0006": 
-    {
-        "text": "テスト6",
-        "img" : "",
-        "whoSend" : "receiver"
-    },
-    "0007": 
-    {
-        "text": "テスト7",
-        "img" : "",
-        "whoSend" : "sender"
-    },
-    "0008": 
-    {
-        "text": "テスト8",
-        "img" : "",
-        "whoSend" : "receiver"
-    },
-    "0009": 
-    {
-        "text": "",
-        "img" : "img/9.png",
-        "whoSend" : "sender"
-    },
-    "0010": 
-    {
-        "text": "テスト10",
-        "img" : "",
-        "whoSend" : "sender"
-    },
-    "0011": 
-    {
-        "text": "テスト11",
-        "img" : "",
-        "whoSend" : "receiver"
-    },
-    "0012": 
-    {
-        "text": "テスト12",
-        "img" : "",
-        "whoSend" : "sender"
-    },
-    "0013": 
-    {
-        "text": "テスト13",
-        "img" : "",
-        "whoSend" : "sender"
-    },
-    "0014": 
-    {
-        "text": "",
-        "img" : "img/4.png",
-        "whoSend" : "receiver"
-    },
-    "0015": 
-    {
-        "text": "",
-        "img" : "img/5.png",
-        "whoSend" : "sender"
-    },
-    "0016": 
-    {
-        "text": "テスト16",
-        "img" : "",
-        "whoSend" : "receiver"
-    },
-    "0017": 
-    {
-        "text": "テスト17",
-        "img" : "",
-        "whoSend" : "receiver"
-    },
-    "0018": 
-    {
-        "text": "テスト18",
-        "img" : "",
-        "whoSend" : "receiver"
-    },
-    "0019": 
-    {
-        "text": "",
-        "img" : "img/9.png",
-        "whoSend" : "sender"
-    },
-    "0020": 
-    {
-        "text": "テスト20",
-        "img" : "",
-        "whoSend" : "sender"
-    },
-    "0021": 
-    {
-        "text": "テスト21",
-        "img" : "",
-        "whoSend" : "receiver"
-    },
-    "0022": 
-    {
-        "text": "テスト22",
-        "img" : "",
-        "whoSend" : "sender"
-    },
-    "0023": 
-    {
-        "text": "テスト23",
-        "img" : "",
-        "whoSend" : "receiver"
-    },
-    "0024": 
-    {
-        "text": "",
-        "img" : "img/4.png",
-        "whoSend" : "sender"
-    },
-    "0025": 
-    {
-        "text": "",
-        "img" : "img/5.png",
-        "whoSend" : "receiver"
-    },
-    "0026": 
-    {
-        "text": "テスト26",
-        "img" : "",
-        "whoSend" : "sender"
-    },
-    "0027": 
-    {
-        "text": "テスト27",
-        "img" : "",
-        "whoSend" : "receiver"
-    },
-    "0028": 
-    {
-        "text": "テスト28",
-        "img" : "",
-        "whoSend" : "sender"
-    },
-    "0029": 
-    {
-        "text": "",
-        "img" : "img/9.png",
-        "whoSend" : "receiver"
-    },
-    "0030": 
-    {
-        "text": "テスト30",
-        "img" : "",
-        "whoSend" : "sender"
-    },
-    "0031": 
-    {
-        "text": "テスト31",
-        "img" : "",
-        "whoSend" : "receiver"
-    },
-    "0032": 
-    {
-        "text": "テスト32",
-        "img" : "",
-        "whoSend" : "receiver"
-    },
-    "0033": 
-    {
-        "text": "テスト33",
-        "img" : "",
-        "whoSend" : "receiver"
-    },
-    "0034": 
-    {
-        "text": "",
-        "img" : "img/4.png",
-        "whoSend" : "sender"
-    },
-    "0035": 
-    {
-        "text": "",
-        "img" : "img/5.png",
-        "whoSend" : "sender"
-    },
-    "0036": 
-    {
-        "text": "テスト36",
-        "img" : "",
-        "whoSend" : "sender"
-    },
-    "0037": 
-    {
-        "text": "テスト37",
-        "img" : "",
-        "whoSend" : "receiver"
-    },
-    "0038": 
-    {
-        "text": "テスト38",
-        "img" : "",
-        "whoSend" : "receiver"
-    },
-    "0039": 
-    {
-        "text": "",
-        "img" : "img/9.png",
-        "whoSend" : "sender"
-    },
-    "0040": 
-    {
-        "text": "テスト40",
-        "img" : "",
-        "whoSend" : "receiver"
-    }
+  "0001": {
+    "text": "テスト1",
+    "img": "",
+    "whoSend": "partner",
+    "sentTime": "2020-11-02T17:46:48+09:00"
+  },
+  "0002": {
+    "text": "テスト2",
+    "img": "",
+    "whoSend": "myself",
+    "sentTime": "2020-11-01T17:46:48+09:00"
+  },
+  "0003": {
+    "text": "テスト3",
+    "img": "",
+    "whoSend": "myself"
+  },
+  "0004": {
+    "text": "",
+    "img": "img/4.png",
+    "whoSend": "myself"
+  },
+  "0005": {
+    "text": "",
+    "img": "img/5.png",
+    "whoSend": "partner"
+  },
+  "0006": {
+    "text": "テスト6",
+    "img": "",
+    "whoSend": "myself"
+  },
+  "0007": {
+    "text": "テスト7",
+    "img": "",
+    "whoSend": "partner"
+  },
+  "0008": {
+    "text": "テスト8",
+    "img": "",
+    "whoSend": "myself"
+  },
+  "0009": {
+    "text": "",
+    "img": "img/9.png",
+    "whoSend": "partner"
+  },
+  "0010": {
+    "text": "テスト10",
+    "img": "",
+    "whoSend": "partner"
+  },
+  "0011": {
+    "text": "テスト11",
+    "img": "",
+    "whoSend": "myself"
+  },
+  "0012": {
+    "text": "テスト12",
+    "img": "",
+    "whoSend": "partner"
+  },
+  "0013": {
+    "text": "テスト13",
+    "img": "",
+    "whoSend": "partner"
+  },
+  "0014": {
+    "text": "",
+    "img": "img/4.png",
+    "whoSend": "myself"
+  },
+  "0015": {
+    "text": "",
+    "img": "img/5.png",
+    "whoSend": "partner"
+  },
+  "0016": {
+    "text": "テスト16",
+    "img": "",
+    "whoSend": "myself"
+  },
+  "0017": {
+    "text": "テスト17",
+    "img": "",
+    "whoSend": "myself"
+  },
+  "0018": {
+    "text": "テスト18",
+    "img": "",
+    "whoSend": "myself"
+  },
+  "0019": {
+    "text": "",
+    "img": "img/9.png",
+    "whoSend": "partner"
+  },
+  "0020": {
+    "text": "テスト20",
+    "img": "",
+    "whoSend": "partner"
+  },
+  "0021": {
+    "text": "テスト21",
+    "img": "",
+    "whoSend": "myself"
+  },
+  "0022": {
+    "text": "テスト22",
+    "img": "",
+    "whoSend": "partner"
+  },
+  "0023": {
+    "text": "テスト23",
+    "img": "",
+    "whoSend": "myself"
+  },
+  "0024": {
+    "text": "",
+    "img": "img/4.png",
+    "whoSend": "partner"
+  },
+  "0025": {
+    "text": "",
+    "img": "img/5.png",
+    "whoSend": "myself"
+  },
+  "0026": {
+    "text": "テスト26",
+    "img": "",
+    "whoSend": "partner"
+  },
+  "0027": {
+    "text": "テスト27",
+    "img": "",
+    "whoSend": "myself"
+  },
+  "0028": {
+    "text": "テスト28",
+    "img": "",
+    "whoSend": "partner"
+  },
+  "0029": {
+    "text": "",
+    "img": "img/9.png",
+    "whoSend": "myself"
+  },
+  "0030": {
+    "text": "テスト30",
+    "img": "",
+    "whoSend": "partner"
+  },
+  "0031": {
+    "text": "テスト31",
+    "img": "",
+    "whoSend": "myself"
+  },
+  "0032": {
+    "text": "テスト32",
+    "img": "",
+    "whoSend": "myself"
+  },
+  "0033": {
+    "text": "テスト33",
+    "img": "",
+    "whoSend": "myself"
+  },
+  "0034": {
+    "text": "",
+    "img": "img/4.png",
+    "whoSend": "partner"
+  },
+  "0035": {
+    "text": "",
+    "img": "img/5.png",
+    "whoSend": "partner"
+  },
+  "0036": {
+    "text": "テスト36",
+    "img": "",
+    "whoSend": "partner"
+  },
+  "0037": {
+    "text": "テスト37",
+    "img": "",
+    "whoSend": "myself"
+  },
+  "0038": {
+    "text": "テスト38",
+    "img": "",
+    "whoSend": "myself"
+  },
+  "0039": {
+    "text": "",
+    "img": "img/9.png",
+    "whoSend": "partner"
+  },
+  "0040": {
+    "text": "テスト40",
+    "img": "",
+    "whoSend": "myself"
+  }
 }
