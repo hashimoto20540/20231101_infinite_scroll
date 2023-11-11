@@ -1,3 +1,6 @@
+const myId = "0001";
+// console.log(myId);
+
 $.when(
   $.getJSON("mySelfMessageHistory.json"),
   $.getJSON("partnerMessageHistory.json")
@@ -99,11 +102,11 @@ function scrollFirstDisplay(JSONLength, sentNumArr, combinedResults) {
         //作成したdiv要素にテキストを入れる
         div.textContent = combinedResults[sentNumArr].text;
         // メッセージの送り手がどちらか判断する
-        // console.log(111111);
-        if (combinedResults[sentNumArr].whoSend == "myself") {
+        // console.log(combinedResults[sentNumArr].senderId);
+        if (combinedResults[sentNumArr].senderId == myId) {
           div.classList.add("scroll--output_myself__text");
         // console.log(1121111);
-        } else if (combinedResults[sentNumArr].whoSend == "partner") {
+        } else {
           div.classList.add("scroll--output_partner__text");
         }
         elm.prepend(div);
@@ -111,9 +114,9 @@ function scrollFirstDisplay(JSONLength, sentNumArr, combinedResults) {
       // 以下JSONに画像が記載されていた場合画像を入れる
       if (combinedResults[sentNumArr].img != "") {
         let img = document.createElement("img");
-        if (combinedResults[sentNumArr].whoSend == "myself") {
+        if (combinedResults[sentNumArr].senderId == myId) {
           img.classList.add("scroll--output_myself__img");
-        } else if (combinedResults[sentNumArr].whoSend == "partner") {
+        } else {
           img.classList.add("scroll--output_partner__img");
         }
         img.src = combinedResults[sentNumArr].img;
@@ -124,10 +127,10 @@ function scrollFirstDisplay(JSONLength, sentNumArr, combinedResults) {
       // console.log(childTotalHeight);  
       // sentIdを-1する
       sentNumArr = sentNumArr - 1;
-      // console.log(sentNumArr);
+      console.log(sentNumArr);
     }
     //.scrollの先頭（.scrollの一番下）に自動でスクロールする
-    console.log($(".scroll")[0].lastElementChild);
+    // console.log($(".scroll")[0].lastElementChild);
     $(".scroll")[0].lastElementChild.scrollIntoView(false);
   });
 }
@@ -144,37 +147,38 @@ function infiniteScroll(JSONLength, sentNumArr, combinedResults) {
       if (this.scrollTop >= 200) return;
       // 最後まで表示していないか確認。index.htmlの.scrollにJSONデータの表示される番号をsentNumArrと設定。初期値はJSONデータの個数。
       if (sentNumArr == 0) {
-        console.log("0になった");
+        // console.log("0になった");
         return;
       }
 
       //未ロードのテキスト・画像がある場合
       //以下上部までスクロールした際の処理
       // JSONのId（sentId）と同じ値を取得して格納する
+      // console.log(sentNumArr);
       var sentId = ("0000" + sentNumArr).slice(-4);
       // console.log(sentId);
       // 以下テキストを入れる
-      if (combinedResults.text != "") {
+      if (combinedResults[sentNumArr].text != "") {
         let div = document.createElement("div");
         //作成したdiv要素にテキストを入れる
-        div.textContent = combinedResults.text;
-        if (combinedResults.whoSend == "myself") {
+        div.textContent = combinedResults[sentNumArr].text;
+        if (combinedResults[sentNumArr].senderId == myId) {
           div.classList.add("scroll--output_myself__text");
-        } else if (combinedResults.whoSend == "partner") {
+        } else {
           div.classList.add("scroll--output_partner__text");
         }
         this.prepend(div);
       }
 
       // 以下画像を入れる
-      if (combinedResults.img != "") {
+      if (combinedResults[sentNumArr].img != "") {
         let img = document.createElement("img");
-        if (combinedResults.whoSend == "myself") {
+        if (combinedResults[sentNumArr].senderId == myId) {
           img.classList.add("scroll--output_myself__img");
-        } else if (combinedResults.whoSend == "partner") {
+        } else {
           img.classList.add("scroll--output_partner__img");
         }
-        img.src = combinedResults.img;
+        img.src = combinedResults[sentNumArr].img;
         this.prepend(img);
       }
       sentNumArr = sentNumArr - 1;

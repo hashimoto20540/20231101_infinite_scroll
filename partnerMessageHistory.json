@@ -1,204 +1,284 @@
-{
+{    
   "massages": [
-    {
-      "text": "テスト1",
+    {      
+      "senderId": "0002",
+      "receiverId": "0001",
+      "text": "相手テスト1",
       "img": "",
       "whoSend": "partner",
       "timestamp": "2020-11-02T17:46:48"
     },
-    {
-      "text": "テスト2",
+    { 
+      "senderId": "0002",
+      "receiverId": "0001",
+      "text": "相手テスト2",
       "img": "",
       "whoSend": "myself",
       "timestamp": "2020-11-01T17:46:48"
     },
-    {
-      "text": "テスト3",
+    { 
+      "senderId": "0002",
+      "receiverId": "0001",
+      "text": "相手テスト3",
       "img": "",
       "whoSend": "myself"
     },
-    {
+    {      
+      "senderId": "0002",
+      "receiverId": "0001",
       "text": "",
       "img": "img/4.png",
       "whoSend": "myself"
     },
-    {
+    {      
+      "senderId": "0002",
+      "receiverId": "0001",
       "text": "",
       "img": "img/5.png",
       "whoSend": "partner"
     },
-    {
-      "text": "テスト6",
+    {      
+      "senderId": "0002",
+      "receiverId": "0001",
+      "text": "相手テスト6",
       "img": "",
       "whoSend": "myself"
     },
-    {
-      "text": "テスト7",
+    {      
+      "senderId": "0002",
+      "receiverId": "0001",
+      "text": "相手テスト7",
       "img": "",
       "whoSend": "partner"
     },
-    {
-      "text": "テスト8",
+    {      
+      "senderId": "0002",
+      "receiverId": "0001",
+      "text": "相手テスト8",
       "img": "",
       "whoSend": "myself"
     },
-    {
+    {      
+      "senderId": "0002",
+      "receiverId": "0001",
       "text": "",
       "img": "img/9.png",
       "whoSend": "partner"
     },
-    {
-      "text": "テスト10",
+    {      
+      "senderId": "0002",
+      "receiverId": "0001",
+      "text": "相手テスト10",
       "img": "",
       "whoSend": "partner"
     },
-    {
-      "text": "テスト11",
+    {      
+      "senderId": "0002",
+      "receiverId": "0001",
+      "text": "相手テスト11",
       "img": "",
       "whoSend": "myself"
     },
-    {
-      "text": "テスト12",
+    {      
+      "senderId": "0002",
+      "receiverId": "0001",
+      "text": "相手テスト12",
       "img": "",
       "whoSend": "partner"
     },
-    {
-      "text": "テスト13",
+    {      
+      "senderId": "0002",
+      "receiverId": "0001",
+      "text": "相手テスト13",
       "img": "",
       "whoSend": "partner"
     },
-    {
+    {      
+      "senderId": "0002",
+      "receiverId": "0001",
       "text": "",
       "img": "img/4.png",
       "whoSend": "myself"
     },
-    {
+    {      
+      "senderId": "0002",
+      "receiverId": "0001",
       "text": "",
       "img": "img/5.png",
       "whoSend": "partner"
     },
-    {
-      "text": "テスト16",
+    {      
+      "senderId": "0002",
+      "receiverId": "0001",
+      "text": "相手テスト16",
       "img": "",
       "whoSend": "myself"
     },
-    {
-      "text": "テスト17",
+    {      
+      "senderId": "0002",
+      "receiverId": "0001",
+      "text": "相手テスト17",
       "img": "",
       "whoSend": "myself"
     },
-    {
-      "text": "テスト18",
+    {      
+      "senderId": "0002",
+      "receiverId": "0001",
+      "text": "相手テスト18",
       "img": "",
       "whoSend": "myself"
     },
-    {
+    {      
+      "senderId": "0002",
+      "receiverId": "0001",
       "text": "",
       "img": "img/9.png",
       "whoSend": "partner"
     },
-    {
-      "text": "テスト20",
+    {      
+      "senderId": "0002",
+      "receiverId": "0001",
+      "text": "相手テスト20",
       "img": "",
       "whoSend": "partner"
     },
-    {
-      "text": "テスト21",
+    {      
+      "senderId": "0002",
+      "receiverId": "0001",
+      "text": "相手テスト21",
       "img": "",
       "whoSend": "myself"
     },
-    {
-      "text": "テスト22",
+    {      
+      "senderId": "0002",
+      "receiverId": "0001",
+      "text": "相手テスト22",
       "img": "",
       "whoSend": "partner"
     },
-    {
-      "text": "テスト23",
+    {      
+      "senderId": "0002",
+      "receiverId": "0001",
+      "text": "相手テスト23",
       "img": "",
       "whoSend": "myself"
     },
-    {
+    {      
+      "senderId": "0002",
+      "receiverId": "0001",
       "text": "",
       "img": "img/4.png",
       "whoSend": "partner"
     },
-    {
+    {      
+      "senderId": "0002",
+      "receiverId": "0001",
       "text": "",
       "img": "img/5.png",
       "whoSend": "myself"
     },
-    {
-      "text": "テスト26",
+    {      
+      "senderId": "0002",
+      "receiverId": "0001",
+      "text": "相手テスト26",
       "img": "",
       "whoSend": "partner"
     },
-    {
-      "text": "テスト27",
+    {      
+      "senderId": "0002",
+      "receiverId": "0001",
+      "text": "相手テスト27",
       "img": "",
       "whoSend": "myself"
     },
-    {
-      "text": "テスト28",
+    {      
+      "senderId": "0002",
+      "receiverId": "0001",
+      "text": "相手テスト28",
       "img": "",
       "whoSend": "partner"
     },
-    {
+    {      
+      "senderId": "0002",
+      "receiverId": "0001",
       "text": "",
       "img": "img/9.png",
       "whoSend": "myself"
     },
-    {
-      "text": "テスト30",
+    {      
+      "senderId": "0002",
+      "receiverId": "0001",
+      "text": "相手テスト30",
       "img": "",
       "whoSend": "partner"
     },
-    {
-      "text": "テスト31",
+    {      
+      "senderId": "0002",
+      "receiverId": "0001",
+      "text": "相手テスト31",
       "img": "",
       "whoSend": "myself"
     },
-    {
-      "text": "テスト32",
+    {      
+      "senderId": "0002",
+      "receiverId": "0001",
+      "text": "相手テスト32",
       "img": "",
       "whoSend": "myself"
     },
-    {
-      "text": "テスト33",
+    {      
+      "senderId": "0002",
+      "receiverId": "0001",
+      "text": "相手テスト33",
       "img": "",
       "whoSend": "myself"
     },
-    {
+    {      
+      "senderId": "0002",
+      "receiverId": "0001",
       "text": "",
       "img": "img/4.png",
       "whoSend": "partner"
     },
-    {
+    {      
+      "senderId": "0002",
+      "receiverId": "0001",
       "text": "",
       "img": "img/5.png",
-      "whoSend": "partner"
+      "whoSend": "myself"
     },
-    {
-      "text": "テスト36",
+    {      
+      "senderId": "0002",
+      "receiverId": "0001",
+      "text": "相手テスト36",
       "img": "",
       "whoSend": "partner"
     },
-    {
-      "text": "テスト37",
+    {      
+      "senderId": "0002",
+      "receiverId": "0001",
+      "text": "相手テスト37",
       "img": "",
       "whoSend": "myself"
     },
-    {
-      "text": "テスト38",
+    {      
+      "senderId": "0002",
+      "receiverId": "0001",
+      "text": "相手テスト38",
       "img": "",
       "whoSend": "myself"
     },
-    {
+    {      
+      "senderId": "0002",
+      "receiverId": "0001",
       "text": "",
       "img": "img/9.png",
       "whoSend": "partner"
     },
-    {
-      "text": "テスト40",
+    {      
+      "senderId": "0002",
+      "receiverId": "0001",
+      "text": "相手テスト40",
       "img": "",
       "whoSend": "myself"
     }
