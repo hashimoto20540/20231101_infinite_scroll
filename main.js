@@ -1,9 +1,5 @@
+//自分のIdを定義
 const myId = "0001";
-// console.log(myId);
-// alert("111");
-// 初期値
-var JSONLength = 0;
-var sentNumArr = 0;
   
 $.when(
   $.getJSON("mySelfMessageHistory.json"),
@@ -21,24 +17,20 @@ $.when(
   // JSONの取得が完了したら下記を実行
   var data01MassagesArr = data01[0].massages;
   var data02MassagesArr = data02[0].massages;
-  // 配列に８０個のオブジェクトが入っている
+  // 自分のメッセージデータと相手のメッセージデータをまとめる
   let combinedResults = data01MassagesArr.concat(data02MassagesArr); // データを連結
   
-  // 時系列順に表示させる。timestampをDateオブジェクトで日付オブジェクトに変換して比較する。
+  // 時系列順に配列を並べ替える。timestampの値をDateオブジェクトで日付オブジェクトに変換して並べ替える。
   combinedResults.sort(function(a, b) {
   return new Date(a.timestamp) - new Date(b.timestamp);
   });
-  // JSONのId（sentId）と同じ値を取得して格納する
-  JSONLength = Object.keys(combinedResults).length;
-  // console.log(JSONLength);
-  //JSONに記載されているIdの数字を定義(初期値)
-  sentNumArr = JSONLength - 1;
-  // console.log(sentNumArr);
+  // 合体したJSONの配列の数を求める
+  var JSONLength = Object.keys(combinedResults).length;
+  //配列の番号を求める
+  var sentNumArr = JSONLength - 1;
   setTimeout(() => {
     let AfterDisplaySentNumArr = scrollFirstDisplay(JSONLength, sentNumArr, combinedResults);
     infiniteScroll(JSONLength, AfterDisplaySentNumArr, combinedResults);
-  }, "1998");
-  setTimeout(() => {
     // ローディング画像を非表示
     $(".loading").addClass("hide");
     canPressButton();
@@ -49,7 +41,7 @@ $.when(
   console.log("error");
 });
 
-// .scrollを取得
+// .scrollを取得して格納
 var scroll = document.querySelectorAll(".scroll");
 
 // 以下スクロール画面（.scroll）内にコンテンツ（画像かテキスト）を表示させる
@@ -58,39 +50,32 @@ function scrollFirstDisplay(JSONLength, sentNumArr, combinedResults) {
   scroll.forEach((elm) => {
     //.scrollの子要素の高さの合計を定義
     var childTotalHeight = 0;
-    //childTotalHeightがスクロール画面（elm.clientHeight、.scrollの高さ）の高さ以下の場合、子要素を追加する
+    //childTotalHeightがスクロール画面の高さ（elm.clientHeight、.scrollの高さ）以下の場合、子要素を追加する
     for (var i = 0; childTotalHeight <= elm.clientHeight; i++) {
-      //以下日時を表示
+      // 以下日時を表示
       // span要素を格納
       let timeElm = document.createElement("span");
-      // 送信時刻にクラスを付け加える
-      timeElm.classList.add("scroll--output__time");
-      // 現在時刻を取得
-      let posttime = new Date(combinedResults[sentNumArr].timestamp);
-      // console.log(posttime);
-      let postYear = posttime.getFullYear();
-      let postMonth = ('00' + (posttime.getMonth() + 1)).slice(-2);
-      let postDate = ('00' + posttime.getDate()).slice(-2);
-      let postHours = ('00' + posttime.getHours()).slice(-2);
-      let postMinutes = ('00' + posttime.getMinutes()).slice(-2);
-      let postSeconds = ('00' + posttime.getSeconds()).slice(-2);
-      // 現在時刻をHTMLに挿入(入力値と一緒にまとめて.scrollの子要素に追加)
-      timeElm.innerHTML = postYear + "/" + postMonth + "/" + postDate + " " + postHours + ":" + postMinutes + ":" + postSeconds;
-
+      postTime(timeElm, combinedResults[sentNumArr].timestamp);
       //以上日時を表示
       
       // 以下JSONにテキストが記載されていた場合テキストを入れる
       if (combinedResults[sentNumArr].text != "") {
+        // 日付とテキストを入れるためにラップした要素を作成
         let wrapDivSentText = document.createElement("div");
+        // テキストを入れる
         let divSentText = document.createElement("span");
-        //作成したdiv要素にテキストを入れる
+        //作成したdiv要素にJSONから取得したテキストを入れる
         divSentText.textContent = combinedResults[sentNumArr].text;
         // メッセージの送り手がどちらか判断する
+        // 送り手のメッセージが自分と同じか？
         if (combinedResults[sentNumArr].senderId == myId) {
+          // 自分用のCSSを付与
           wrapDivSentText.classList.add("scroll--output_myself__text");
+          //ラップした要素の内側にテキストを入れた要素と日時を入れた要素を入れる
           wrapDivSentText.appendChild(timeElm);
           wrapDivSentText.appendChild(divSentText);
         } else {
+          // 相手用のCSSを付与
           wrapDivSentText.classList.add("scroll--output_partner__text");
           wrapDivSentText.appendChild(divSentText);
           wrapDivSentText.appendChild(timeElm);
@@ -106,8 +91,7 @@ function scrollFirstDisplay(JSONLength, sentNumArr, combinedResults) {
         if (combinedResults[sentNumArr].senderId == myId) {
           wrapImgSent.classList.add("scroll--output_myself__wrap_img");
           wrapImgSent.appendChild(timeElm);
-          wrapImgSent.appendChild(imgSent);
-          // wrapImgSent.innerHTML = timeElm.innerHTML  + imgSent;          
+          wrapImgSent.appendChild(imgSent);        
         } else {
           wrapImgSent.classList.add("scroll--output_partner__wrap_img");
           wrapImgSent.appendChild(imgSent);
@@ -116,7 +100,7 @@ function scrollFirstDisplay(JSONLength, sentNumArr, combinedResults) {
         
         elm.prepend(wrapImgSent);
       }
-      //子要素の合計の高さを求める
+      //子要素の合計の高さを新しく求める（子要素が追加されたため高さが変化する）
       childTotalHeight += elm.children[0].scrollHeight;
       // sentIdを-1する
       sentNumArr = sentNumArr - 1;
@@ -137,34 +121,18 @@ function infiniteScroll(JSONLength, sentNumArr, combinedResults) {
       // scrollFirstDisplay()内の.scrollIntoView(false)により、最初に元の位置（scrollTopが0）から下にスクロールされているので、上部までスクロールされたことを検知するために200より小さくなったときに処理を行う。
       // console.log(this.scrollTop);
       if (this.scrollTop >= 200) return;
-      // 最後まで表示していないか確認。sentNumArrは配列なので、indexは0が配列の先頭、なので-1だった場合は全て処理したことになるのでreturnする。初期値はJSONデータの個数-1。
+      // 最後まで表示していないか確認。sentNumArrは配列なので、indexは0が配列の先頭、なので-1だった場合は全て処理したことになるのでreturnする。初期値はJSONデータのmessagesの個数-1。
       if (sentNumArr == -1) {
-        // console.log("0になった");
+        // console.log("0になりました");
         return;
       }
-
+      //以下上部までスクロールした際の処理
       //以下日時を表示
-      // span要素を格納
       let timeElm = document.createElement("span");
-      // 送信時刻にクラスを付け加える
-      timeElm.classList.add("scroll--output__time");
-
-      // 現在時刻を取得
-      let posttime = new Date(combinedResults[sentNumArr].timestamp);
-      // console.log(posttime);
-      let postYear = posttime.getFullYear();
-      let postMonth = ('00' + (posttime.getMonth() + 1)).slice(-2);
-      let postDate = ('00' + posttime.getDate()).slice(-2);
-      let postHours = ('00' + posttime.getHours()).slice(-2);
-      let postMinutes = ('00' + posttime.getMinutes()).slice(-2);
-      let postSeconds = ('00' + posttime.getSeconds()).slice(-2);
-      // 現在時刻をHTMLに挿入(入力値と一緒にまとめて.scrollの子要素に追加)
-      timeElm.innerHTML = postYear + "/" + postMonth + "/" + postDate + " " + postHours + ":" + postMinutes + ":" + postSeconds;
+      postTime(timeElm, combinedResults[sentNumArr].timestamp);
       //以上日時を表示
 
       //未ロードのテキスト・画像がある場合
-      //以下上部までスクロールした際の処理
-      // JSONのId（sentId）と同じ値を取得して格納する
       // 以下テキストを入れる
       if (combinedResults[sentNumArr].text != "") {
         let wrapDivSentText = document.createElement("div");
@@ -193,8 +161,7 @@ function infiniteScroll(JSONLength, sentNumArr, combinedResults) {
         if (combinedResults[sentNumArr].senderId == myId) {
           wrapImgSent.classList.add("scroll--output_myself__wrap_img");
           wrapImgSent.appendChild(timeElm);
-          wrapImgSent.appendChild(imgSent);
-          // wrapImgSent.innerHTML = timeElm.innerHTML  + imgSent;          
+          wrapImgSent.appendChild(imgSent);          
         } else {
           wrapImgSent.classList.add("scroll--output_partner__wrap_img");
           wrapImgSent.appendChild(imgSent);
@@ -202,7 +169,6 @@ function infiniteScroll(JSONLength, sentNumArr, combinedResults) {
         }
         this.prepend(wrapImgSent);
       }
-   
       sentNumArr = sentNumArr - 1;
     };
   });
@@ -221,18 +187,7 @@ sendbutton.addEventListener("click", function () {
   //以下送信ボタンを押した際に日時を表示
   // span要素を格納
   let timeElm = document.createElement("span");
-  timeElm.classList.add("scroll--output__time");
-  // 現在時刻を取得
-  let posttime = new Date();
-  // console.log(posttime);
-  let postYear = posttime.getFullYear();
-  let postMonth = ('00' + (posttime.getMonth() + 1)).slice(-2);
-  let postDate = ('00' + posttime.getDate()).slice(-2);
-  let postHours = ('00' + posttime.getHours()).slice(-2);
-  let postMinutes = ('00' + posttime.getMinutes()).slice(-2);
-  let postSeconds = ('00' + posttime.getSeconds()).slice(-2);
-  // 現在時刻をHTMLに挿入(入力値と一緒にまとめて.scrollの子要素に追加)
-  timeElm.innerHTML = postYear + "/" + postMonth + "/" + postDate + " " + postHours + ":" + postMinutes + ":" + postSeconds;
+  postTime(timeElm, new Date());
   //以上送信ボタンを押した際に日時を表示
 
   // 入力値を取得する
@@ -242,17 +197,24 @@ sendbutton.addEventListener("click", function () {
   // inputタグに入力したテキストを削除する（送信ボタンを押すと消えるようにする）
   document.getElementById("inputText").value = "";
 
+  const textareaEls = document.querySelectorAll(".textarea--input__text");
+
+  textareaEls.forEach((textareaEl) => {
+    // デフォルト値としてスタイル属性を付与、テキストエリアの高さに応じてスタイルの高さを変更
+    textareaEl.style.height = "1em";
+  });
+  
+  
+  
   // 取得した入力値を表示させるdiv要素を作成
   let wrapOutputText = document.createElement("div");
   var outputText = document.createElement("span");
   // 作成したdiv要素にclassをつける
   wrapOutputText.classList.add("scroll--output_myself__text");
   //.scrollが付いている要素のノードリストを取得する
-  var scroll = document.querySelectorAll(".scroll");
   scroll.forEach((elm) => {
-    // 入力したテキストを作成したoutputText(divタグ)に入れる
+    // 入力したテキストを、outputText(divタグ)に入れる
     outputText.innerHTML = inputText;
-        // outputText.innerHTML = timeElm.innerHTML + "<span>" + inputText + "</span>";
     wrapOutputText.appendChild(timeElm);
     wrapOutputText.appendChild(outputText);
     // .scrollが付いている要素の子要素の先頭に作成したdivタグを入れる
@@ -274,3 +236,39 @@ function indention(a) {
   return b;
 }
 
+  // 以下日時を表示
+function postTime(timeElm, timestamp) {
+  // 送信時刻にクラスを付け加える
+  timeElm.classList.add("scroll--output__time");
+  // 現在時刻を取得
+  let posttime = new Date(timestamp);
+  let postYear = posttime.getFullYear();
+  let postMonth = ('00' + (posttime.getMonth() + 1)).slice(-2);
+  let postDate = ('00' + posttime.getDate()).slice(-2);
+  let postHours = ('00' + posttime.getHours()).slice(-2);
+  let postMinutes = ('00' + posttime.getMinutes()).slice(-2);
+  let postSeconds = ('00' + posttime.getSeconds()).slice(-2);
+  // 現在時刻をHTMLに挿入(入力値と一緒にまとめて.scrollの子要素に追加)
+  timeElm.innerHTML = postYear + "/" + postMonth + "/" + postDate + " " + postHours + ":" + postMinutes + ":" + postSeconds;
+  return timeElm;
+}
+//以上日時を表示
+  
+// 以下テキストエリアの高さを調整する
+window.addEventListener("DOMContentLoaded", () => {
+  // textareaタグを全て取得
+  const textareaEls = document.querySelectorAll(".textarea--input__text");
+
+  textareaEls.forEach((textareaEl) => {
+    // inputイベントが発生するたびに関数呼び出し
+    textareaEl.addEventListener("input", setTextareaHeight);
+  });
+
+  // textareaの高さを計算して指定する関数
+  function setTextareaHeight() {
+    //ここでのthisは".textarea--input__text"がついている要素
+    this.style.height = "1em";
+    this.style.height = `${this.scrollHeight}px`;
+  }
+});
+// 以上テキストエリアの高さを調整する

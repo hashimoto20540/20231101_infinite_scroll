@@ -9,6 +9,7 @@
 
 .textarea--input__text {
   height: 1em;
+  resize: both; /* 手動リサイズを許可 */
 }
 
 .scroll--output_myself__wrap_img {
@@ -30,6 +31,8 @@
 .scroll--output_myself__text {
   margin: 2.5em 0.5em 0em auto;
   width: fit-content;
+  display: flex;
+  align-items: flex-end;
 }
 
 .scroll--output_partner__text {
@@ -54,5 +57,5 @@
 
 .scroll--output__time {
   font-size: 10px;
-  margin: 0.25em;
+  margin: 0.25em 0.75em;
 }
