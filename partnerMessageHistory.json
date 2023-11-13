@@ -5,7 +5,6 @@
       "receiverId": "0001",
       "text": "相手テスト1",
       "img": "",
-      "whoSend": "partner",
       "timestamp": "2020-11-02T17:46:48"
     },
     { 
@@ -13,7 +12,6 @@
       "receiverId": "0001",
       "text": "相手テスト2",
       "img": "",
-      "whoSend": "myself",
       "timestamp": "2020-11-02T17:46:49"
     },
     { 
@@ -21,7 +19,6 @@
       "receiverId": "0001",
       "text": "相手テスト3",
       "img": "",
-      "whoSend": "myself",
       "timestamp": "2020-11-02T17:47:48"
     },
     {      
@@ -29,7 +26,6 @@
       "receiverId": "0001",
       "text": "",
       "img": "img/4.png",
-      "whoSend": "myself",
       "timestamp": "2020-11-02T18:46:48"
     },
     {      
@@ -37,7 +33,6 @@
       "receiverId": "0001",
       "text": "",
       "img": "img/5.png",
-      "whoSend": "partner",
       "timestamp": "2020-11-03T17:46:48"
     },
     {      
@@ -45,7 +40,6 @@
       "receiverId": "0001",
       "text": "相手テスト6",
       "img": "",
-      "whoSend": "myself",
       "timestamp": "2020-12-11T17:46:48"
     },
     {      
@@ -53,7 +47,6 @@
       "receiverId": "0001",
       "text": "相手テスト7",
       "img": "",
-      "whoSend": "partner",
       "timestamp": "2023-11-11T17:46:48"
     },
     {      
@@ -61,7 +54,6 @@
       "receiverId": "0001",
       "text": "相手テスト8",
       "img": "",
-      "whoSend": "myself",
       "timestamp": "2023-11-11T17:46:49"
     },
     {      
@@ -69,7 +61,6 @@
       "receiverId": "0001",
       "text": "",
       "img": "img/9.png",
-      "whoSend": "partner",
       "timestamp": "2023-11-11T17:46:50"
     },
     {      
@@ -77,7 +68,6 @@
       "receiverId": "0001",
       "text": "相手テスト10",
       "img": "",
-      "whoSend": "partner",
       "timestamp": "2023-11-11T17:46:51"
     },
     {      
@@ -85,7 +75,6 @@
       "receiverId": "0001",
       "text": "相手テスト11",
       "img": "",
-      "whoSend": "myself",
       "timestamp": "2023-11-11T17:46:52"
     },
     {      
@@ -93,7 +82,6 @@
       "receiverId": "0001",
       "text": "相手テスト12",
       "img": "",
-      "whoSend": "partner",
       "timestamp": "2023-11-11T17:46:53"
     },
     {      
@@ -101,7 +89,6 @@
       "receiverId": "0001",
       "text": "相手テスト13",
       "img": "",
-      "whoSend": "partner",
       "timestamp": "2023-11-11T17:46:54"
     },
     {      
@@ -109,7 +96,6 @@
       "receiverId": "0001",
       "text": "",
       "img": "img/4.png",
-      "whoSend": "myself",
       "timestamp": "2023-11-11T17:46:55"
     },
     {      
@@ -117,7 +103,6 @@
       "receiverId": "0001",
       "text": "",
       "img": "img/5.png",
-      "whoSend": "partner",
       "timestamp": "2023-11-11T17:46:56"
     },
     {      
@@ -125,7 +110,6 @@
       "receiverId": "0001",
       "text": "相手テスト16",
       "img": "",
-      "whoSend": "myself",
       "timestamp": "2023-11-11T17:46:57"
     },
     {      
@@ -133,7 +117,6 @@
       "receiverId": "0001",
       "text": "相手テスト17",
       "img": "",
-      "whoSend": "myself",
       "timestamp": "2023-11-11T17:46:58"
     },
     {      
@@ -141,7 +124,6 @@
       "receiverId": "0001",
       "text": "相手テスト18",
       "img": "",
-      "whoSend": "myself",
       "timestamp": "2023-11-11T17:46:59"
     },
     {      
@@ -149,7 +131,6 @@
       "receiverId": "0001",
       "text": "",
       "img": "img/9.png",
-      "whoSend": "partner",
       "timestamp": "2023-11-11T17:47:48"
     },
     {      
@@ -157,7 +138,6 @@
       "receiverId": "0001",
       "text": "相手テスト20",
       "img": "",
-      "whoSend": "partner",
       "timestamp": "2023-11-11T17:48:48"
     },
     {      
@@ -165,7 +145,6 @@
       "receiverId": "0001",
       "text": "相手テスト21",
       "img": "",
-      "whoSend": "myself",
       "timestamp": "2023-11-11T17:49:48"
     },
     {      
@@ -173,7 +152,6 @@
       "receiverId": "0001",
       "text": "相手テスト22",
       "img": "",
-      "whoSend": "partner",
       "timestamp": "2023-11-11T17:50:48"
     },
     {      
@@ -181,7 +159,6 @@
       "receiverId": "0001",
       "text": "相手テスト23",
       "img": "",
-      "whoSend": "myself",
       "timestamp": "2023-11-11T17:51:48"
     },
     {      
@@ -189,7 +166,6 @@
       "receiverId": "0001",
       "text": "",
       "img": "img/4.png",
-      "whoSend": "partner",
       "timestamp": "2023-11-11T17:52:48"
     },
     {      
@@ -197,7 +173,6 @@
       "receiverId": "0001",
       "text": "",
       "img": "img/5.png",
-      "whoSend": "myself",
       "timestamp": "2023-11-11T17:53:48"
     },
     {      
@@ -205,7 +180,6 @@
       "receiverId": "0001",
       "text": "相手テスト26",
       "img": "",
-      "whoSend": "partner",
       "timestamp": "2023-11-11T17:54:48"
     },
     {      
@@ -213,7 +187,6 @@
       "receiverId": "0001",
       "text": "相手テスト27",
       "img": "",
-      "whoSend": "myself",
       "timestamp": "2023-11-11T17:55:48"
     },
     {      
@@ -221,7 +194,6 @@
       "receiverId": "0001",
       "text": "相手テスト28",
       "img": "",
-      "whoSend": "partner",
       "timestamp": "2023-11-11T17:56:48"
     },
     {      
@@ -229,7 +201,6 @@
       "receiverId": "0001",
       "text": "",
       "img": "img/9.png",
-      "whoSend": "myself",
       "timestamp": "2023-11-11T17:57:48"
     },
     {      
@@ -237,7 +208,6 @@
       "receiverId": "0001",
       "text": "相手テスト30",
       "img": "",
-      "whoSend": "partner",
       "timestamp": "2023-11-11T17:58:48"
     },
     {      
@@ -245,7 +215,6 @@
       "receiverId": "0001",
       "text": "相手テスト31",
       "img": "",
-      "whoSend": "myself",
       "timestamp": "2023-11-11T17:59:48"
     },
     {      
@@ -253,7 +222,6 @@
       "receiverId": "0001",
       "text": "相手テスト32",
       "img": "",
-      "whoSend": "myself",
       "timestamp": "2023-11-11T18:46:48"
     },
     {      
@@ -261,7 +229,6 @@
       "receiverId": "0001",
       "text": "相手テスト33",
       "img": "",
-      "whoSend": "myself",
       "timestamp": "2023-11-11T18:47:00"
     },
     {      
@@ -269,7 +236,6 @@
       "receiverId": "0001",
       "text": "",
       "img": "img/4.png",
-      "whoSend": "partner",
       "timestamp": "2023-11-11T18:47:01"
     },
     {      
@@ -277,7 +243,6 @@
       "receiverId": "0001",
       "text": "",
       "img": "img/5.png",
-      "whoSend": "myself",
       "timestamp": "2023-11-11T18:47:02"
     },
     {      
@@ -285,7 +250,6 @@
       "receiverId": "0001",
       "text": "相手テスト36",
       "img": "",
-      "whoSend": "partner",
       "timestamp": "2023-11-11T18:47:03"
     },
     {      
@@ -293,7 +257,6 @@
       "receiverId": "0001",
       "text": "相手テスト37",
       "img": "",
-      "whoSend": "myself",
       "timestamp": "2023-11-11T18:47:04"
     },
     {      
@@ -301,7 +264,6 @@
       "receiverId": "0001",
       "text": "相手テスト38",
       "img": "",
-      "whoSend": "myself",
       "timestamp": "2023-11-11T18:47:05"
     },
     {      
@@ -309,7 +271,6 @@
       "receiverId": "0001",
       "text": "",
       "img": "img/9.png",
-      "whoSend": "partner",
       "timestamp": "2023-11-11T20:47:06"
     },
     {      
@@ -317,7 +278,6 @@
       "receiverId": "0001",
       "text": "相手テスト40",
       "img": "",
-      "whoSend": "myself",
       "timestamp": "2023-11-11T20:47:07"
     }
   ]

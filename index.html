@@ -14,10 +14,13 @@
 
   <body>
     <h1>無限スクロール</h1>
-
-    <div class="scroll" >
-      <div class="loading hide"></div>
-      <!-- ここに要素を追加していく -->
+    <div>検索</div>
+    <textarea type="text" id="search_text" class="textarea--search__text"></textarea>
+    <div class="wrap_scroll">
+      <div class="scroll" >
+        <div class="loading hide"></div>
+        <!-- ここに要素を追加していく -->
+      </div>
     </div>
     <br /><br />
     <div>入力してください</div>
@@ -25,8 +28,7 @@
       type="text"
       id="inputText"
       class="textarea--input__text"
-    ></textarea
-    ><br />
+    ></textarea><br />
     <button id="sendbutton" disabled>送信</button>
     <script defer src="main.js" type="module"></script>
   </body>

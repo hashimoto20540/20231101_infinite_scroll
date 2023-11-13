@@ -28,6 +28,7 @@ $.when(
   var JSONLength = Object.keys(combinedResults).length;
   //配列の番号を求める
   var sentNumArr = JSONLength - 1;
+  searchTextFunc(combinedResults);
   setTimeout(() => {
     let AfterDisplaySentNumArr = scrollFirstDisplay(JSONLength, sentNumArr, combinedResults);
     infiniteScroll(JSONLength, AfterDisplaySentNumArr, combinedResults);
@@ -204,8 +205,6 @@ sendbutton.addEventListener("click", function () {
     textareaEl.style.height = "1em";
   });
   
-  
-  
   // 取得した入力値を表示させるdiv要素を作成
   let wrapOutputText = document.createElement("div");
   var outputText = document.createElement("span");
@@ -257,7 +256,7 @@ function postTime(timeElm, timestamp) {
 // 以下テキストエリアの高さを調整する
 window.addEventListener("DOMContentLoaded", () => {
   // textareaタグを全て取得
-  const textareaEls = document.querySelectorAll(".textarea--input__text");
+  const textareaEls = document.querySelectorAll("textarea");
 
   textareaEls.forEach((textareaEl) => {
     // inputイベントが発生するたびに関数呼び出し
@@ -272,3 +271,40 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 });
 // 以上テキストエリアの高さを調整する
+
+//以下検索
+function searchTextFunc(combinedResults) {
+  var searchTextElm = document.getElementById("search_text");
+  var alreadyExecutedWhitescreen = false;
+  searchTextElm.addEventListener("input", function () {
+    alreadyExecutedWhitescreen = inputChange(combinedResults, this.value, alreadyExecutedWhitescreen);
+  });
+}
+
+function inputChange(combinedResults, searchText, alreadyExecutedWhitescreen) {
+  // console.log(alreadyExecutedWhitescreen);
+  let whitescreen = document.createElement("div");
+  if (!alreadyExecutedWhitescreen) {
+    scroll[0].remove();
+    whitescreen.classList.add("scroll--search__whitescreen");
+    document.querySelector(".wrap_scroll").appendChild(whitescreen);
+    alreadyExecutedWhitescreen = true;
+  }
+
+  for (var i = combinedResults.length - 1; i > 0; i--) {
+    if (combinedResults[i].text == "") continue;
+    // console.log(searchText);
+    if (combinedResults[i].text.includes(searchText)) {
+      console.log("文章に「" + searchText + "」が含まれています。");
+      searchMessage = document.createElement("div");
+      searchMessage.textContent = combinedResults[i].text;
+      whitescreen.appendChild(searchMessage);
+    } else {
+      continue;
+        console.log("文章に「" + searchText + "」は含まれていません。");
+    }
+  }
+  return alreadyExecutedWhitescreen;
+
+}
+//以上検索
