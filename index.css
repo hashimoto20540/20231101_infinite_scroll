@@ -67,7 +67,7 @@
 }
 
 .scroll--search__whitescreen {
-  background-color: #cbcbcb;
+  background-color: #f0f0f0;
   overflow-y: auto;
   /* direction: rtl; */
   width: 400px;
