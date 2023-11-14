@@ -35,6 +35,7 @@ $.when(
     // ローディング画像を非表示
     $(".loading").addClass("hide");
     canPressButton();
+    canSearch();
   }, "2000");
 
 })
@@ -273,90 +274,56 @@ window.addEventListener("DOMContentLoaded", () => {
 // 以上テキストエリアの高さを調整する
 
 //以下検索
+
+// 以下検索できなくする
+const search_text = document.getElementById("search_text");
+function canSearch() {
+  search_text.disabled = null;
+}
+// 以上検索できなくする
 function searchTextFunc(combinedResults) {
   var searchTextElm = document.getElementById("search_text");
   var alreadyExecutedWhitescreen = false;
+  let whitescreen = document.createElement("div");
   searchTextElm.addEventListener("input", function () {
-    alreadyExecutedWhitescreen = inputChange(combinedResults, this.value, alreadyExecutedWhitescreen);
+    alreadyExecutedWhitescreen = inputChange(combinedResults, this.value, alreadyExecutedWhitescreen, whitescreen);
   });
 }
 
-function inputChange(combinedResults, searchText, alreadyExecutedWhitescreen) {
+function inputChange(combinedResults, searchText, alreadyExecutedWhitescreen, whitescreen) {
   // console.log(alreadyExecutedWhitescreen);
-  let whitescreen = document.createElement("div");
   if (!alreadyExecutedWhitescreen) {
     scroll[0].remove();
-    whitescreen.classList.add("scroll--search__whitescreen");
     document.querySelector(".wrap_scroll").appendChild(whitescreen);
+    whitescreen.classList.add("scroll--search__whitescreen");
     alreadyExecutedWhitescreen = true;
+  }
+  // inputテキストが変更されたらwhitescreenの子要素を全て削除する。
+  while( whitescreen.firstChild ){
+    whitescreen.firstChild.remove();
   }
 
   for (var i = combinedResults.length - 1; i > 0; i--) {
     if (combinedResults[i].text == "") continue;
     if (searchText == "") continue;
-    // console.log(searchText);
+    // console.log(whitescreen.firstChild);
+
     if (combinedResults[i].text.includes(searchText)) {
       console.log("文章に「" + searchText + "」が含まれています。");
+      //div要素を作ってテキストを入れる。
       let searchMessage = document.createElement("div");
       searchMessage.textContent = combinedResults[i].text;
-      console.log(!searchMessage);
+      // console.log(!searchMessage);  //false
+      //whitescreenの子要素に追加する。
       whitescreen.appendChild(searchMessage);
     } else {
       // if (!searchMessage) continue;
       //   searchMessage.remove();
-        console.log("文章に「" + searchText + "」は含まれていません。");
+        // console.log("文章に「" + searchText + "」は含まれていません。");
     }
   }
+  // console.log(whitescreen.firstChild);
   return alreadyExecutedWhitescreen;
 
 }
 //以上検索
-
-
-// document.addEventListener('DOMContentLoaded', function() {
-//     // ここに実行したいコードを書きます
-//     // console.log('ページがロードされました！');
-
-//   let combinedResults2 = [{ "text": "テスト1" }, { "text": "テスト2" }, { "text": "テスト3" }, { "text": "テスト4" }, { "text": "テスト5" }, { "text": "テスト6" }, { "text": "テスト7" }, { "text": "テスト8" }, { "text": "テスト9" }, { "text": "テスト10" }, { "text": "テスト11" }, { "text": "テスト12" }, { "text": "テスト13" }, { "text": "テスト14" }, { "text": "テスト15" }, { "text": "テスト16" }, { "text": "テスト17" }, { "text": "テスト18" }, { "text": "テスト19" }, { "text": "テスト20" }];
-//   // console.log(combinedResults2.length);
-//   searchTextFunc2(combinedResults2);
-//   function searchTextFunc2(combinedResults2) {
-//     var searchTextElm = document.getElementById("test_textarea");
-//     var alreadyExecutedWhitescreen = false;
-//     // console.log(11111);
-//     searchTextElm.addEventListener("input", function () {
-//       alreadyExecutedWhitescreen = inputChange2(combinedResults2, this.value, alreadyExecutedWhitescreen);
-//     });
-//   }
-
-//   function inputChange2(combinedResults2, searchText, alreadyExecutedWhitescreen) {
-//     // console.log(alreadyExecutedWhitescreen);
-//     let whitescreen = document.createElement("div");
-
-//     if (!alreadyExecutedWhitescreen) {
-//       scroll[0].remove();
-//       whitescreen.classList.add("scroll--search__whitescreen");
-//       document.querySelector(".test").appendChild(whitescreen);
-//       alreadyExecutedWhitescreen = true;
-//     }
-
-//     for (var i = combinedResults2.length - 1; i > 0; i--) {
-//       if (combinedResults2[i].text == "") continue;
-//       if (searchText == "") continue;
-//       // console.log(combinedResults2[i].text);
-//       if (combinedResults2[i].text.includes(searchText)) {
-//         console.log("文章に「" + searchText + "」が含まれています。");
-//         let searchMessage = document.createElement("div");
-//         searchMessage.textContent = combinedResults2[i].text;
-//         console.log(searchMessage);
-//         whitescreen.appendChild(searchMessage);
-//       } else {
-//         // continue;
-//           console.log("文章に「" + searchText + "」は含まれていません。");
-//       }
-//     }
-//     return alreadyExecutedWhitescreen;
-
-//   }
-
-// });
