@@ -75,4 +75,8 @@
   border: solid 1px #333333;
 }
 
+.search_whitescreen--searchMessage__div {
+  cursor: pointer;
+}
 /* 以上検索 */
+/* 以下画像 */
