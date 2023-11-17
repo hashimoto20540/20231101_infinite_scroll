@@ -519,19 +519,16 @@ function scrollFromStart(combinedResults, clickNum, searchMessage) {
 function ag2fileToImg(t, a, c) {
   // console.log(a);
   // FileListオブジェクトからFileオブジェクトのリストを取得。
-  // console.log(t.files); //FileList {0: File, length: 1}
-  //  console.log(t.files.length);//1
+  // console.log(t.files); //FileList {0: File, length: 1}　２個だとFileList {0: File, 1: File, length: 2}
+  //  console.log(t.files.length);//1　　２つ選択すると２
   let ag2files = t.files,
       ag2fileNum = t.files.length;
   let ag2reader,ag2img;
   // Fileの数だけ処理を実行。
   for(let i = 0; i < ag2fileNum; i++){
     let thisFile = ag2files[i];
+    // console.log(ag2files[i]);
     // console.log(thisFile); //File {name: '顔写真.JPG', lastModified: 1698837915714, lastModifiedDate: Wed Nov 01 2023 20:25:15 GMT+0900 (日本標準時), webkitRelativePath: '', size: 1394571, …}
-    // console.log(thisFile.name); //顔写真.JPG
-    // console.log(thisFile.lastModified); //1698837915714
-    // console.log(thisFile.size); //1394571
-    // console.log(thisFile.type);  //image/jpeg
     let thisFileName = thisFile.name,//ファイル名
         thisFileModi = thisFile.lastModified,//UNIXタイムスタンプをミリ秒 (IE非対応)
         thisFileSize = thisFile.size,//ファイルサイズ（バイト数（１バイト＝半角英数字一文字分の情報量））
@@ -548,24 +545,19 @@ function ag2fileToImg(t, a, c) {
     //FileオブジェクトをデータURLに変換
     //  FileReader()は FileReaderオブジェクト
     ag2reader = new FileReader();
-    // console.log(ag2reader);
     ag2reader.readAsDataURL(thisFile);
 
     ag2reader.addEventListener('load', function(){
       //imgタグをDOMに挿入
       ag2img = document.createElement('img');
-      // console.log(ag2img);  //imgタグ、その中にsrc属性ありめっちゃ長いソースが記載されてある。ag2img.src = ag2reader.result;をコメントアウトすると<img class="ag2readerImg">が表示される。
+      console.log(ag2img);  //imgタグ、その中にsrc属性ありめっちゃ長いソースが記載されてある。ag2img.src = ag2reader.result;をコメントアウトすると<img class="ag2readerImg">が表示される。
       // console.log(ag2reader.result);  //めちゃくちゃ長い文字列が表示される
       // console.log(ag2img.src);// thisFileと同じ？
       ag2img.src = ag2reader.result;
       // console.log(ag2img.src);
       ag2img.classList.add(c);
       
-      
-      
-      
       // 以下画像を送信するときに日時などをつける
-
       //以下送信ボタンを押した際に日時を表示
       // span要素を格納
       let timeElm = document.createElement("span");
@@ -577,31 +569,47 @@ function ag2fileToImg(t, a, c) {
       wrapOutputImg.classList.add("scroll--output_myself__wrap_img");
       wrapOutputImg.appendChild(timeElm);
       wrapOutputImg.appendChild(ag2img);
-      console.log(wrapOutputImg);
+      // console.log(wrapOutputImg);
+      // 以上画像を送信するときに日時などをつける
 
       a.appendChild(wrapOutputImg)
       $(".scroll")[0].lastElementChild.scrollIntoView(false);
-      
-      
-      
-      // areaの子要素に追加
-      // a.appendChild(ag2img);
-
     });
     ag2reader.addEventListener('error', function(){
       console.log('reader.error :');
       console.log(ag2reader.error);
     });
   }
+  // ファイルの入力値をnullにする
+  ag2input.value = null;
 }
 
 
-const ag2input = document.getElementById('ag2input'),//input要素
-      ag2imgArea = document.querySelector(".scroll"),//画像の表示エリア
-      ag2readerImgClass = 'scroll--output__img';//img要素に付与するクラス名
+// console.log(ag2input);
       // console.log(ag2imgArea);
 ag2input.addEventListener('change', function () {
+  console.log("ag2inputが変更された");
+  let ag2input = document.getElementById('ag2input'),//input要素
+      ag2imgArea = document.querySelector(".scroll"),//画像の表示エリア
+      ag2readerImgClass = 'scroll--output__img';//img要素に付与するクラス名
   // console.log(this);  //	<input id="ag2input" type="file" accept="image/*" multiple="">
-  ag2fileToImg(this,ag2imgArea,ag2readerImgClass);
+  // console.log(ag2input);  //2こ　<input id="ag2input" type="file" accept="image/*" multiple="">
+  // console.log(this);// 2こ　<input id="ag2input" type="file" accept="image/*" multiple="">
+  ag2fileToImg(this, ag2imgArea, ag2readerImgClass);
 });
+
+// 以下削除ボタンを設置する
+// const imgDelete = document.getElementById('imgDelete');
+//   // 削除ボタンがクリックされた時の処理
+//   imgDelete.addEventListener('click', function (event) {
+//     if (event.target.tagName === 'LI') {
+//       event.target.remove();
+//     }
+//   });
+
+// 以上削除ボタンを設置する
+
+
+
+
 // 以上画像を表示させる
