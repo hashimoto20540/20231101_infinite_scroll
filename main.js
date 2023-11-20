@@ -34,8 +34,12 @@ $.when(
     infiniteScroll(AfterDisplaySentNumArr, combinedResults);
     // ローディング画像を非表示
     $(".loading").addClass("hide");
-    canPressButton();
-    canSearch();
+    // canPressButton();
+    // canSearch();
+    // canSelectImg();
+    canSelect(sendbutton);
+    canSelect(search_text);
+    canSelect(ag2input);
   }, "2000");
 
   })
@@ -45,6 +49,14 @@ $.when(
     console.log("error");
   }, "2000");
 });
+
+// 以下選択可能
+const sendbutton = document.getElementById("sendbutton");
+const search_text = document.getElementById("search_text");
+function canSelect(elm) {
+  elm.disabled = null;
+}
+// 以上選択可能
 
 // .scrollを取得して格納
 var scroll = document.querySelectorAll(".scroll");
@@ -188,13 +200,6 @@ function infiniteScroll(sentNumArr, combinedResults) {
 }
 // 以上無限スクロール（上スクロール）
 
-const sendbutton = document.getElementById("sendbutton");
-// 以下ボタンを押せるようにする
-function canPressButton() {
-  sendbutton.disabled = null;
-}
-// 以上ボタンを押せるようにする
-
 // 以下入力してボタンを押すとテキストと日時を表示される
 sendbutton.addEventListener("click", function () {
   //以下送信ボタンを押した際に日時を表示
@@ -285,13 +290,6 @@ window.addEventListener("DOMContentLoaded", () => {
 // 以上テキストエリアの高さを調整する
 
 //以下検索
-// 以下検索できなくする
-const search_text = document.getElementById("search_text");
-function canSearch() {
-  search_text.disabled = null;
-}
-// 以上検索できなくする
-
 // 一回だけ処理を実施
 var alreadyExecutedWhitescreen = false;
 function searchTextFunc(combinedResults) {
@@ -511,98 +509,77 @@ function scrollFromStart(combinedResults, clickNum, searchMessage) {
 // 以上検索をクリックしたときにクリックした画面まで移動
 //以上検索
 
-
-
-
 // 以下画像を表示させる
 // 引数に「選択されたファイルのFileListオブジェクト」、「画像の表示エリアになる要素」、「img要素に付与するクラス名」を受け取るように作成。
 function ag2fileToImg(t, a, c) {
-  // console.log(a);
-  // FileListオブジェクトからFileオブジェクトのリストを取得。
-  // console.log(t.files); //FileList {0: File, length: 1}　２個だとFileList {0: File, 1: File, length: 2}
-  //  console.log(t.files.length);//1　　２つ選択すると２
   let ag2files = t.files,
       ag2fileNum = t.files.length;
-  let ag2reader,ag2img;
+  // ag2reader = new FileReader()
   // Fileの数だけ処理を実行。
-  for(let i = 0; i < ag2fileNum; i++){
+  for (let i = 0; i < ag2fileNum; i++){
+    // ag2inputのfile情報を取得
     let thisFile = ag2files[i];
-    // console.log(ag2files[i]);
-    // console.log(thisFile); //File {name: '顔写真.JPG', lastModified: 1698837915714, lastModifiedDate: Wed Nov 01 2023 20:25:15 GMT+0900 (日本標準時), webkitRelativePath: '', size: 1394571, …}
+
     let thisFileName = thisFile.name,//ファイル名
-        thisFileModi = thisFile.lastModified,//UNIXタイムスタンプをミリ秒 (IE非対応)
-        thisFileSize = thisFile.size,//ファイルサイズ（バイト数（１バイト＝半角英数字一文字分の情報量））
         thisFileType = thisFile.type;//MIMEタイプ
 
-    //取得したファイルのMIMEタイプをチェック
-    // ファイルのMIMEタイプがimage/で始まるか
-    // console.log(thisFileType.startsWith('image/'));
+    //取得したファイルのMIMEタイプをチェック、ファイルのMIMEタイプがimage/で始まるか
     if(!thisFileType.startsWith('image/')){
       console.log('"'+thisFileName+'" is not a image.');
       return;
     }
 
-    //FileオブジェクトをデータURLに変換
-    //  FileReader()は FileReaderオブジェクト
-    ag2reader = new FileReader();
+    //Fileオブジェクトのインスタンスを生成
+    let ag2reader = new FileReader();
+    // Fileオブジェクトにあるファイルを、Data URIとして読み込む（img要素のsrc属性に指定してブラウザに表示させる）。
     ag2reader.readAsDataURL(thisFile);
-
-    ag2reader.addEventListener('load', function(){
-      //imgタグをDOMに挿入
-      ag2img = document.createElement('img');
-      // console.log(ag2img);  //imgタグ、その中にsrc属性ありめっちゃ長いソースが記載されてある。ag2img.src = ag2reader.result;をコメントアウトすると<img class="ag2readerImg">が表示される。
-      // console.log(ag2reader.result);  //めちゃくちゃ長い文字列が表示される
-      // console.log(ag2img.src);// thisFileと同じ？
-      ag2img.src = ag2reader.result;
-      // console.log(ag2img.src);
-      ag2img.classList.add(c);
-      
-      // 以下画像を送信するときに日時などをつける
-      //以下送信ボタンを押した際に日時を表示
-      // span要素を格納
-      let timeElm = document.createElement("span");
-      postTime(timeElm, new Date());
-      //以上送信ボタンを押した際に日時を表示
-      
-      let wrapOutputImg = document.createElement("div");
-
-      wrapOutputImg.classList.add("scroll--output_myself__wrap_img");
-      wrapOutputImg.appendChild(timeElm);
-      wrapOutputImg.appendChild(ag2img);
-      // console.log(wrapOutputImg);
-      // 以上画像を送信するときに日時などをつける
-
-      a.appendChild(wrapOutputImg)
-      $(".scroll")[0].lastElementChild.scrollIntoView(false);
-    });
+    ag2reader = "111";
+    //エラーが起こった場合
     ag2reader.addEventListener('error', function(){
       console.log('reader.error :');
       console.log(ag2reader.error);
+       console.error('Error reading file:');
     });
+    //ag2readerが読み込まれてから処理を実行する。
+    ag2reader.addEventListener('load', function(){
+      //imgタグをDOMに挿入
+      let ag2img = document.createElement('img');
+      ag2img.src = ag2reader.result;
+      ag2img.classList.add(c);
+      // 以下画像を送信するときに日時などをつける
+      // 以下日時を表示、span要素を格納
+      let timeElm = document.createElement("span");
+      postTime(timeElm, new Date());
+      //以上日時を表示
+      
+      let wrapOutputImg = document.createElement("div");
+      wrapOutputImg.classList.add("scroll--output_myself__wrap_img");
+      wrapOutputImg.appendChild(timeElm);
+      wrapOutputImg.appendChild(ag2img);
+      // 以上画像を送信するときに日時などをつける
+
+      a.appendChild(wrapOutputImg)
+      // 送信した時に最下部までスクロールされるようにする
+      var bottom = $(".scroll")[0].scrollHeight - $(".scroll")[0].clientHeight;
+      $(".scroll")[0].scroll(0, bottom);
+    });
+
   }
   // ファイルの入力値をnullにする
   ag2input.value = null;
 }
 
+let ag2input = document.getElementById('ag2input'),//input要素
+    ag2imgArea = document.querySelector(".scroll"),//画像の表示エリア
+    ag2readerImgClass = 'scroll--output__img';//img要素に付与するクラス名
 ag2input.addEventListener('change', function () {
-  let ag2input = document.getElementById('ag2input'),//input要素
-      ag2imgArea = document.querySelector(".scroll"),//画像の表示エリア
-      ag2readerImgClass = 'scroll--output__img';//img要素に付与するクラス名
   ag2fileToImg(this, ag2imgArea, ag2readerImgClass);
 });
-
-// 以下削除ボタンを設置する
-// const imgDelete = document.getElementById('imgDelete');
-//   // 削除ボタンがクリックされた時の処理
-//   imgDelete.addEventListener('click', function (event) {
-//     if (event.target.tagName === 'LI') {
-//       event.target.remove();
-//     }
-//   });
-
-// 以上削除ボタンを設置する
-
-
-
+// 以下検索できなくする
+function canSelectImg() {
+  ag2input.disabled = null;
+}
+// 以上検索できなくする
 
 // 以上画像を表示させる
+
