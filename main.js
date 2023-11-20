@@ -550,7 +550,7 @@ function ag2fileToImg(t, a, c) {
     ag2reader.addEventListener('load', function(){
       //imgタグをDOMに挿入
       ag2img = document.createElement('img');
-      console.log(ag2img);  //imgタグ、その中にsrc属性ありめっちゃ長いソースが記載されてある。ag2img.src = ag2reader.result;をコメントアウトすると<img class="ag2readerImg">が表示される。
+      // console.log(ag2img);  //imgタグ、その中にsrc属性ありめっちゃ長いソースが記載されてある。ag2img.src = ag2reader.result;をコメントアウトすると<img class="ag2readerImg">が表示される。
       // console.log(ag2reader.result);  //めちゃくちゃ長い文字列が表示される
       // console.log(ag2img.src);// thisFileと同じ？
       ag2img.src = ag2reader.result;
@@ -584,17 +584,10 @@ function ag2fileToImg(t, a, c) {
   ag2input.value = null;
 }
 
-
-// console.log(ag2input);
-      // console.log(ag2imgArea);
 ag2input.addEventListener('change', function () {
-  console.log("ag2inputが変更された");
   let ag2input = document.getElementById('ag2input'),//input要素
       ag2imgArea = document.querySelector(".scroll"),//画像の表示エリア
       ag2readerImgClass = 'scroll--output__img';//img要素に付与するクラス名
-  // console.log(this);  //	<input id="ag2input" type="file" accept="image/*" multiple="">
-  // console.log(ag2input);  //2こ　<input id="ag2input" type="file" accept="image/*" multiple="">
-  // console.log(this);// 2こ　<input id="ag2input" type="file" accept="image/*" multiple="">
   ag2fileToImg(this, ag2imgArea, ag2readerImgClass);
 });
 
