@@ -34,9 +34,6 @@ $.when(
     infiniteScroll(AfterDisplaySentNumArr, combinedResults);
     // ローディング画像を非表示
     $(".loading").addClass("hide");
-    // canPressButton();
-    // canSearch();
-    // canSelectImg();
     canSelect(sendbutton);
     canSelect(search_text);
     canSelect(ag2input);
@@ -533,7 +530,6 @@ function ag2fileToImg(t, a, c) {
     let ag2reader = new FileReader();
     // Fileオブジェクトにあるファイルを、Data URIとして読み込む（img要素のsrc属性に指定してブラウザに表示させる）。
     ag2reader.readAsDataURL(thisFile);
-    ag2reader = "111";
     //エラーが起こった場合
     ag2reader.addEventListener('error', function(){
       console.log('reader.error :');
@@ -575,11 +571,6 @@ let ag2input = document.getElementById('ag2input'),//input要素
 ag2input.addEventListener('change', function () {
   ag2fileToImg(this, ag2imgArea, ag2readerImgClass);
 });
-// 以下検索できなくする
-function canSelectImg() {
-  ag2input.disabled = null;
-}
-// 以上検索できなくする
 
 // 以上画像を表示させる
 

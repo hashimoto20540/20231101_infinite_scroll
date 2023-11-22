@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>File Reader Example</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+  <style>
+    #imageContainer {
+      margin-top: 20px;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 10px;
+    }
+    .scroll {
+      overflow-y: auto;
+      /* direction: rtl; */
+      width: 400px;
+      height: 360px;
+      border: solid 1px #333333;
+      /* position: relative; */
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap_scroll">
+    <div class="scroll" >
+      <div class="loading hide"></div>
+      <!-- ここに要素を追加していく -->
+    </div>
+  </div>
+  画像<br /><input id="ag2input" type="file" accept="image/*" multiple>
+  <script>
+    // 引数に「ファイルを選択させる要素」、「画像の表示エリアになる要素」を受け取るように作成。
+    function ag2fileToImg(t, a) {
+      let ag2files = t.files,
+          ag2fileNum = t.files.length;
+      // ユーザが選択したFileの数だけ処理を実行。
+      for (let i = 0; i < ag2fileNum; i++){
+        let thisFile = ag2files[i]; // ag2inputのfile情報を取得
+        let thisFileName = thisFile.name,//ファイル名
+            thisFileType = thisFile.type;//MIMEタイプ
+
+        //取得したファイルのMIMEタイプをチェック、ファイルのMIMEタイプがimage/で始まるか
+        if(!thisFileType.startsWith('image/')){
+          console.log('"'+thisFileName+'" is not a image.');
+          return;
+        }
+        let ag2reader = new FileReader(); //FileReader()オブジェクトのインスタンスを生成
+        // FileReaderオブジェクトにあるファイルを、Data URIとして読み込む（img要素のsrc属性に指定してブラウザに表示させる）。
+        ag2reader.readAsDataURL(thisFile);
+        // console.log(thisFile);
+        // ag2reader ="aaa";
+        //エラーが起こった場合
+        ag2reader.addEventListener('error', function(){
+          console.log('reader.error :');
+          console.log(ag2reader.error);
+          console.error('Error reading file:');
+          console.log("エラーが出ました");
+        });
+        //ag2readerが読み込まれてから処理を実行する。
+        ag2reader.addEventListener('load', function(){
+          let ag2img = document.createElement('img');
+          ag2img.src = ag2reader.result;
+          a.appendChild(ag2img); //子要素に追加する
+        });
+      }
+    }
+    let ag2input = document.getElementById('ag2input'),//input要素
+        ag2imgArea = document.querySelector(".scroll");//画像の表示エリア
+    ag2input.addEventListener('change', function () {
+      ag2fileToImg(this, ag2imgArea);
+    });
+  </script>
+</body>
+</html>
